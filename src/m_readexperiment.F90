@@ -2,28 +2,31 @@ module m_readexperiment
 use m_setup
 use m_state
 contains
-subroutine readexperiment(participant,direction,speed)
-   integer, intent(in) :: participant
-   integer, intent(in) :: direction
-   integer, intent(in) :: speed
+subroutine readexperiment(ip,id,is)
+   integer, intent(in) :: ip  ! participant number (1-67)
+   integer, intent(in) :: id  ! direction number (1-12)
+   integer, intent(in) :: is  ! speed number (1-3)
    character(len=7) fileprefix
    character(len=100) filename
    character(len=100) header
+   character(len=2) tag2
    logical ex
-   integer i,itmp
+   integer i,nrlines
    real tmp
 
-   write(fileprefix,'(i2.2,a,i2.2,a,i1.1)')participant,'_',direction,'_',speed
+   write(fileprefix,'(i2.2,a,i2.2,a,i1.1)')ip,'_',id,'_',is
 
    print *,'fileprefix=',fileprefix
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading position data x1 ,y1, z1, x2 ,y2, z2
+   ! part(1-67)%expr(1-12,1:3)%pos2(1:nrlmax)%x
    filename=trim(dir_project)//'/'//subdir_pos//'/'//fileprefix//'.xyz'
    print *,'reading filename=',trim(filename)
 
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+      part(ip)%expr(id,is)%lpos=.true.
       open(10,file=trim(filename))
       read(10,'(a)')header
       do i=1,100000
@@ -32,16 +35,15 @@ subroutine readexperiment(participant,direction,speed)
       100 nrlines=i-1
       print *,'nrlines=',nrlines
       close(10)
-      allocate(exp(nrlines))
 
       open(10,file=trim(filename))
       read(10,'(a)')header
       do i=1,nrlines
-         read(10,*)tmp,exp(i)%pos1,exp(i)%pos2
+         read(10,*)tmp,part(ip)%expr(id,is)%pos1(i),part(ip)%expr(id,is)%pos2(i)
       enddo
       close(10)
    else
-      stop 'pos file does not exist'
+      part(ip)%expr(id,is)%lpos=.false.
    endif
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -50,14 +52,16 @@ subroutine readexperiment(participant,direction,speed)
    print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+      part(ip)%expr(id,is)%led1=.true.
       open(10,file=trim(filename))
       read(10,'(a)')header
       do i=1,nrlines
-         read(10,*)itmp,exp(i)%ed1
+         read(10,*,end=101)tmp,part(ip)%expr(id,is)%ed1(i)
       enddo
+      101 nrlines=i-1
       close(10)
    else
-      stop 'acc file does not exist'
+      part(ip)%expr(id,is)%led1=.false.
    endif
 
 
@@ -67,14 +71,16 @@ subroutine readexperiment(participant,direction,speed)
    print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+      part(ip)%expr(id,is)%led9=.true.
       open(10,file=trim(filename))
       read(10,'(a)')header
       do i=1,nrlines
-         read(10,*)itmp,exp(i)%ed9
+         read(10,*,end=102)tmp,part(ip)%expr(id,is)%ed9(i)
       enddo
+      102 nrlines=i-1
       close(10)
    else
-      stop 'acc file does not exist'
+      part(ip)%expr(id,is)%led9=.false.
    endif
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -83,15 +89,16 @@ subroutine readexperiment(participant,direction,speed)
    print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+      part(ip)%expr(id,is)%lee6=.true.
       open(10,file=trim(filename))
       read(10,'(a)')header
       do i=1,nrlines
-         read(10,*)itmp,exp(i)%ee6
-         !print '(i4,i10,3f12.6)',i,itmp,ee6(i)
+         read(10,*,end=103)tmp,part(ip)%expr(id,is)%ee6(i)
       enddo
+      103 nrlines=i-1
       close(10)
    else
-      stop 'acc file does not exist'
+      part(ip)%expr(id,is)%lee6=.false.
    endif
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -100,15 +107,16 @@ subroutine readexperiment(participant,direction,speed)
    print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+      part(ip)%expr(id,is)%lefa=.true.
       open(10,file=trim(filename))
       read(10,'(a)')header
       do i=1,nrlines
-         read(10,*)itmp,exp(i)%efa
-         !print '(i4,i10,3f12.6)',i,itmp,efa(i)
+         read(10,*,end=104)tmp,part(ip)%expr(id,is)%efa(i)
       enddo
+      104 nrlines=i-1
       close(10)
    else
-      stop 'acc file does not exist'
+      part(ip)%expr(id,is)%lefa=.false.
    endif
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -117,14 +125,16 @@ subroutine readexperiment(participant,direction,speed)
    print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+      part(ip)%expr(id,is)%leff=.true.
       open(10,file=trim(filename))
       read(10,'(a)')header
       do i=1,nrlines
-         read(10,*)itmp,exp(i)%eff
+         read(10,*,end=105)tmp,part(ip)%expr(id,is)%eff(i)
       enddo
+      105 nrlines=i-1
       close(10)
    else
-      stop 'acc file does not exist'
+      part(ip)%expr(id,is)%leff=.false.
    endif
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -133,15 +143,51 @@ subroutine readexperiment(participant,direction,speed)
    print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+      part(ip)%expr(id,is)%lf00=.true.
       open(10,file=trim(filename))
       read(10,'(a)')header
       do i=1,nrlines
-         read(10,*)itmp,exp(i)%f00
+         read(10,*,end=106)tmp,part(ip)%expr(id,is)%f00(i)
+      enddo
+      106 nrlines=i-1
+      close(10)
+   else
+      part(ip)%expr(id,is)%lf00=.false.
+   endif
+
+
+   part(ip)%expr(id,is)%nrlines=nrlines
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Reading foot data
+   write(tag2,'(i2.2)')ip
+   filename=' '
+   filename=trim(dir_project)//'/'//subdir_foot//'/FL'//tag2//'.csv'
+   print *,'reading filename=',trim(filename)
+
+   inquire(file=trim(filename),exist=ex)
+   if (ex) then
+      open(10,file=trim(filename))
+      read(10,'(a)')header
+      do i=1,100000
+         read(10,*,end=200)tmp
+      enddo
+      200 nrlines=i-1
+
+      feet(ip)%nrlines=nrlines
+      print *,'nrlines=',nrlines
+      close(10)
+
+      open(10,file=trim(filename))
+      read(10,'(a)')header
+      do i=1,nrlines
+         read(10,*)feet(ip)%foot(i)%xh,feet(ip)%foot(i)%yh,feet(ip)%foot(i)%xv,feet(ip)%foot(i)%yv
       enddo
       close(10)
    else
-      stop 'acc file does not exist'
+      stop 'foot file does not exist'
    endif
+
 
 end subroutine
 end module

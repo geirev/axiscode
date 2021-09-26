@@ -1,11 +1,16 @@
 main.o:      makefile
 main.o:      MODEL.CPP
 main.o:      m_readexperiment.o
+main.o:      m_referencepoint.o
 main.o:      m_setup.o
+main.o:      m_state.o
 m_readexperiment.o:      makefile
 m_readexperiment.o:      MODEL.CPP
 m_readexperiment.o:      m_setup.o
 m_readexperiment.o:      m_state.o
+m_referencepoint.o:      makefile
+m_referencepoint.o:      MODEL.CPP
+m_referencepoint.o:      m_state.o
 m_setup.o:      makefile
 m_setup.o:      MODEL.CPP
 m_state.o:      makefile

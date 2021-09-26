@@ -1,4 +1,12 @@
 module m_state
+   integer, parameter :: nrparticipants=67
+   integer, parameter :: nrdirections=12
+   integer, parameter :: nrspeeds=3
+   integer, parameter :: nrlmax=1000
+
+   integer, parameter :: nrfootpoints=50
+
+
    type coord
       real x
       real y
@@ -6,16 +14,39 @@ module m_state
    end type
 
    type experiment
-      type(coord) :: pos1
-      type(coord) :: pos2
-      type(coord) :: ed1
-      type(coord) :: ed9
-      type(coord) :: ee6
-      type(coord) :: efa
-      type(coord) :: eff
-      type(coord) :: f00
+      integer nrlines
+      logical lpos,led1,led9,lee6,lefa,leff,lf00
+      type(coord) :: pos1(nrlmax)
+      type(coord) :: pos2(nrlmax)
+      type(coord) :: ed1(nrlmax)
+      type(coord) :: ed9(nrlmax)
+      type(coord) :: ee6(nrlmax)
+      type(coord) :: efa(nrlmax)
+      type(coord) :: eff(nrlmax)
+      type(coord) :: f00(nrlmax)
    end type
 
-   integer :: nrlines
-   type (experiment) , allocatable :: exp(:)
+   type participant
+      real xorigo,yorigo
+      type (experiment) :: expr(nrdirections,nrspeeds)
+   end type
+
+   type (participant)  ::  part(nrparticipants)
+
+   ! part(1-67)%expr(1-12,1:3)%pos2(1:nrlmax)%x
+
+
+! Food class
+   type footdata
+      real xh,yh,xv,yv
+   end type
+
+   type partfoot
+      integer nrlines
+      type (footdata) foot(nrfootpoints)
+   end type
+   type (partfoot) feet(nrparticipants)
+
+!   feet(1-67)%foot(i)%xh
+
 end module

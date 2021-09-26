@@ -1,5 +1,6 @@
 MODULES = \
 	m_readexperiment.F90\
+	m_referencepoint.F90\
 	m_setup.F90\
 	m_state.F90
 
