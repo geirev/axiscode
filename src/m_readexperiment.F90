@@ -9,14 +9,12 @@ subroutine readexperiment(ip,id,is)
    character(len=7) fileprefix
    character(len=100) filename
    character(len=100) header
-   character(len=2) tag2
    logical ex
    integer i,nrlines
    real tmp
 
    write(fileprefix,'(i2.2,a,i2.2,a,i1.1)')ip,'_',id,'_',is
 
-   print *,'fileprefix=',fileprefix
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading position data x1 ,y1, z1, x2 ,y2, z2
@@ -33,7 +31,6 @@ subroutine readexperiment(ip,id,is)
          read(10,*,end=100)tmp
       enddo
       100 nrlines=i-1
-      print *,'nrlines=',nrlines
       close(10)
 
       open(10,file=trim(filename))
@@ -49,7 +46,7 @@ subroutine readexperiment(ip,id,is)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading ED1 acceleration data x ,y, z
    filename=trim(dir_project)//'/'//subdir_acc//'/'//fileprefix//'_00B41ED1'//'.acc'
-   print *,'reading filename=',trim(filename)
+   !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
       part(ip)%expr(id,is)%led1=.true.
@@ -68,7 +65,7 @@ subroutine readexperiment(ip,id,is)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading ED9 acceleration data x ,y, z
    filename=trim(dir_project)//'/'//subdir_acc//'/'//fileprefix//'_00B41ED9'//'.acc'
-   print *,'reading filename=',trim(filename)
+   !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
       part(ip)%expr(id,is)%led9=.true.
@@ -86,7 +83,7 @@ subroutine readexperiment(ip,id,is)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading EE6 acceleration data x ,y, z
    filename=trim(dir_project)//'/'//subdir_acc//'/'//fileprefix//'_00B41EE6'//'.acc'
-   print *,'reading filename=',trim(filename)
+   !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
       part(ip)%expr(id,is)%lee6=.true.
@@ -104,7 +101,7 @@ subroutine readexperiment(ip,id,is)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading EFA acceleration data x ,y, z
    filename=trim(dir_project)//'/'//subdir_acc//'/'//fileprefix//'_00B41EFA'//'.acc'
-   print *,'reading filename=',trim(filename)
+   !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
       part(ip)%expr(id,is)%lefa=.true.
@@ -122,7 +119,7 @@ subroutine readexperiment(ip,id,is)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading EFF acceleration data x ,y, z
    filename=trim(dir_project)//'/'//subdir_acc//'/'//fileprefix//'_00B41EFF'//'.acc'
-   print *,'reading filename=',trim(filename)
+   !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
       part(ip)%expr(id,is)%leff=.true.
@@ -140,7 +137,7 @@ subroutine readexperiment(ip,id,is)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading acceleration data x ,y, z
    filename=trim(dir_project)//'/'//subdir_acc//'/'//fileprefix//'_00B41F00'//'.acc'
-   print *,'reading filename=',trim(filename)
+   !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
       part(ip)%expr(id,is)%lf00=.true.
@@ -155,38 +152,7 @@ subroutine readexperiment(ip,id,is)
       part(ip)%expr(id,is)%lf00=.false.
    endif
 
-
    part(ip)%expr(id,is)%nrlines=nrlines
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! Reading foot data
-   write(tag2,'(i2.2)')ip
-   filename=' '
-   filename=trim(dir_project)//'/'//subdir_foot//'/FL'//tag2//'.csv'
-   print *,'reading filename=',trim(filename)
-
-   inquire(file=trim(filename),exist=ex)
-   if (ex) then
-      open(10,file=trim(filename))
-      read(10,'(a)')header
-      do i=1,100000
-         read(10,*,end=200)tmp
-      enddo
-      200 nrlines=i-1
-
-      feet(ip)%nrlines=nrlines
-      print *,'nrlines=',nrlines
-      close(10)
-
-      open(10,file=trim(filename))
-      read(10,'(a)')header
-      do i=1,nrlines
-         read(10,*)feet(ip)%foot(i)%xh,feet(ip)%foot(i)%yh,feet(ip)%foot(i)%xv,feet(ip)%foot(i)%yv
-      enddo
-      close(10)
-   else
-      stop 'foot file does not exist'
-   endif
 
 
 end subroutine

@@ -1,8 +1,13 @@
 MODULES = \
+	m_footpointsdir.F90\
+	m_newnrlines.F90\
+	m_pickfootpoint.F90\
 	m_readexperiment.F90\
+	m_readfootdata.F90\
 	m_referencepoint.F90\
 	m_setup.F90\
-	m_state.F90
+	m_state.F90\
+	m_writeoutfile.F90
 
 F90FILES = \
 	main.F90

@@ -11,10 +11,13 @@
 104	m_readexperiment.F90	/^      104 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
 105	m_readexperiment.F90	/^      105 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
 106	m_readexperiment.F90	/^      106 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
-200	m_readexperiment.F90	/^      200 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
+200	m_readfootdata.F90	/^      200 nrlines=i-1$/;"	l	subroutine:readfootdata	file:
 axis	main.F90	/^program axis$/;"	p
 coord	m_state.F90	/^   type coord$/;"	t	module:m_state
 dir_project	m_setup.F90	/^   character(len=100) :: dir_project=/;"	v	module:m_setup
+dirh	m_state.F90	/^      real dirh(/;"	k	type:footdata
+dirv	m_state.F90	/^      real dirv(/;"	k	type:footdata
+dist2	m_state.F90	/^      real        :: dist2(/;"	k	type:experiment
 ed1	m_state.F90	/^      type(coord) :: ed1(/;"	k	type:experiment
 ed9	m_state.F90	/^      type(coord) :: ed9(/;"	k	type:experiment
 ee6	m_state.F90	/^      type(coord) :: ee6(/;"	k	type:experiment
@@ -23,10 +26,9 @@ eff	m_state.F90	/^      type(coord) :: eff(/;"	k	type:experiment
 experiment	m_state.F90	/^   type experiment$/;"	t	module:m_state
 expr	m_state.F90	/^      type (experiment) :: expr(/;"	k	type:participant
 f00	m_state.F90	/^      type(coord) :: f00(/;"	k	type:experiment
-feet	m_state.F90	/^   type (partfoot) feet(/;"	v	module:m_state
-foot	m_state.F90	/^      type (footd/;"	k	type:partfoot
+foot	m_state.F90	/^      type (footd/;"	k	type:participant
 footdata	m_state.F90	/^   type footdata$/;"	t	module:m_state
-i	main.F90	/^   in/;"	v	program:axis
+footpointsdir	m_footpointsdir.F90	/^subroutine footpointsdir(/;"	s	module:m_footpointsdir
 id	main.F90	/^   integer :: id$/;"	v	program:axis
 ip	main.F90	/^   integer :: ip$/;"	v	program:axis
 is	main.F90	/^   integer :: is$/;"	v	program:axis
@@ -37,33 +39,41 @@ lefa	m_state.F90	/^      logical lpos,led1,led9,lee6,lefa,/;"	k	type:experiment
 leff	m_state.F90	/^      logical lpos,led1,led9,lee6,lefa,leff,/;"	k	type:experiment
 lf00	m_state.F90	/^      logical lpos,led1,led9,lee6,lefa,leff,lf00$/;"	k	type:experiment
 lpos	m_state.F90	/^      logical lpos,/;"	k	type:experiment
+m_footpointsdir	m_footpointsdir.F90	/^module m_footpointsdir$/;"	m
+m_newnrlines	m_newnrlines.F90	/^module m_newnrlines$/;"	m
+m_pickfootpoint	m_pickfootpoint.F90	/^module m_pickfootpoint$/;"	m
 m_readexperiment	m_readexperiment.F90	/^module m_readexperiment$/;"	m
+m_readfootdata	m_readfootdata.F90	/^module m_readfootdata$/;"	m
 m_referencepoint	m_referencepoint.F90	/^module m_referencepoint$/;"	m
 m_setup	m_setup.F90	/^module m_setup$/;"	m
 m_state	m_state.F90	/^module m_state$/;"	m
+m_writeoutfile	m_writeoutfile.F90	/^module m_writeoutfile$/;"	m
+newnrlines	m_newnrlines.F90	/^subroutine newnrlines(/;"	s	module:m_newnrlines
 nrdirections	m_state.F90	/^   integer, parameter :: nrdirections=/;"	v	module:m_state
 nrfootpoints	m_state.F90	/^   integer, parameter :: nrfootpoints=/;"	v	module:m_state
 nrlines	m_state.F90	/^      integer nrlines$/;"	k	type:experiment
-nrlines	m_state.F90	/^      integer nrlines$/;"	k	type:partfoot
+nrlines	m_state.F90	/^      integer nrlines$/;"	k	type:footdata
 nrlmax	m_state.F90	/^   integer, parameter :: nrlmax=/;"	v	module:m_state
 nrparticipants	m_state.F90	/^   integer, parameter :: nrparticipants=/;"	v	module:m_state
 nrspeeds	m_state.F90	/^   integer, parameter :: nrspeeds=/;"	v	module:m_state
 part	m_state.F90	/^   type (parti/;"	v	module:m_state
-partfoot	m_state.F90	/^   type partfoot$/;"	t	module:m_state
 participant	m_state.F90	/^   type participant$/;"	t	module:m_state
+pickfootpoint	m_pickfootpoint.F90	/^subroutine pickfootpoint(/;"	s	module:m_pickfootpoint
 pos1	m_state.F90	/^      type(coord) :: pos1(/;"	k	type:experiment
 pos2	m_state.F90	/^      type(coord) :: pos2(/;"	k	type:experiment
 readexperiment	m_readexperiment.F90	/^subroutine readexperiment(/;"	s	module:m_readexperiment
+readfootdata	m_readfootdata.F90	/^subroutine readfootdata(/;"	s	module:m_readfootdata
 referencepoint	m_referencepoint.F90	/^subroutine referencepoint(/;"	s	module:m_referencepoint
 subdir_acc	m_setup.F90	/^   character(len=3)   :: subdir_acc=/;"	v	module:m_setup
-subdir_foot	m_setup.F90	/^   character(len=6)  :: subdir_foot=/;"	v	module:m_setup
-subdir_pos	m_setup.F90	/^   character(len=11)   :: subdir_pos=/;"	v	module:m_setup
+subdir_foot	m_setup.F90	/^   character(len=6)   :: subdir_foot=/;"	v	module:m_setup
+subdir_pos	m_setup.F90	/^   character(len=11)  :: subdir_pos=/;"	v	module:m_setup
+writeoutfile	m_writeoutfile.F90	/^subroutine writeoutfile(/;"	s	module:m_writeoutfile
 x	m_state.F90	/^      real x$/;"	k	type:coord
-xh	m_state.F90	/^      real xh,/;"	k	type:footdata
+xh	m_state.F90	/^      real xh(/;"	k	type:footdata
 xorigo	m_state.F90	/^      real xorigo,/;"	k	type:participant
-xv	m_state.F90	/^      real xh,yh,xv,/;"	k	type:footdata
+xv	m_state.F90	/^      real xv(/;"	k	type:footdata
 y	m_state.F90	/^      real y$/;"	k	type:coord
-yh	m_state.F90	/^      real xh,yh,/;"	k	type:footdata
+yh	m_state.F90	/^      real yh(/;"	k	type:footdata
 yorigo	m_state.F90	/^      real xorigo,yorigo$/;"	k	type:participant
-yv	m_state.F90	/^      real xh,yh,xv,yv$/;"	k	type:footdata
+yv	m_state.F90	/^      real yv(/;"	k	type:footdata
 z	m_state.F90	/^      real z$/;"	k	type:coord
