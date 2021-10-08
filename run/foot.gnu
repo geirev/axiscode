@@ -180,7 +180,7 @@ set style line  7 linewidth 1 linecolor rgb '#0044a5'        pointsize 0.75 poin
 set style line 100 linecolor rgb 'black' pointsize 2 pointtype 7   # circle
 set autoscale
 set style data linespoints
-participant="12"
+participant="10"
 plot    participant."_origo.out" using 1:2 linestyle 100 title "Origo",\
         participant."_footright.out" using 2:3 pointtype 1 linewidth 2 linecolor black title "Right foot",\
         participant."_footleft.out"  using 2:3 pointtype 7 linewidth 2 linecolor black title "Left foot",\

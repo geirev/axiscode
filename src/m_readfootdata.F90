@@ -38,7 +38,9 @@ subroutine readfootdata(ip)
       close(10)
 
       i1=minloc(xh(1:nrlines))
+      i1=1
       i2=maxloc(xh(1:nrlines))
+      i2=nrlines
       j=0
       do i=i1(1),i2(1)
          j=j+1
@@ -48,7 +50,9 @@ subroutine readfootdata(ip)
       part(ip)%foot%nrlinesh=j
 
       i1=minloc(xv(1:nrlines))
+      i1=1
       i2=maxloc(xv(1:nrlines))
+      i2=nrlines
       j=0
       do i=i1(1),i2(1)
          j=j+1

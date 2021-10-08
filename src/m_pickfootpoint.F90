@@ -12,38 +12,38 @@ subroutine pickfootpoint(ip,id)
    real theta, newtheta
 
    select case(id)
-   case(1)
-      ! 30 degres take distance to max point on right foot
-      i=part(ip)%foot%nrlinesh
-      part(ip)%foot%dist(id)= sqrt( (part(ip)%foot%xh(i) - part(ip)%xorigo)**2 &
-                                  + (part(ip)%foot%yh(i) - part(ip)%yorigo)**2 )
-
-   case(11)
-      ! 330 degres take distance to max point on left foot
-      i=part(ip)%foot%nrlinesv
-      part(ip)%foot%dist(id)= sqrt( (part(ip)%foot%xv(i) - part(ip)%xorigo)**2 &
-                                  + (part(ip)%foot%yv(i) - part(ip)%yorigo)**2 )
-
+!   case(1)
+!      ! 30 degres take distance to max point on right foot
+!      i=part(ip)%foot%nrlinesh
+!      part(ip)%foot%dist(id)= sqrt( (part(ip)%foot%xh(i) - part(ip)%xorigo)**2 &
+!                                  + (part(ip)%foot%yh(i) - part(ip)%yorigo)**2 )
+!
+!   case(11)
+!      ! 330 degres take distance to max point on left foot
+!      i=part(ip)%foot%nrlinesv
+!      part(ip)%foot%dist(id)= sqrt( (part(ip)%foot%xv(i) - part(ip)%xorigo)**2 &
+!                                  + (part(ip)%foot%yv(i) - part(ip)%yorigo)**2 )
+!
    case(12)
       ! 360 degres take average distance to max point from both feet
-      i=part(ip)%foot%nrlinesv
-      j=part(ip)%foot%nrlinesh
+      i=part(ip)%foot%nrlinesv-1
+      j=part(ip)%foot%nrlinesh-1
       part(ip)%foot%dist(id)= sqrt( (part(ip)%foot%xv(i) - part(ip)%xorigo)**2 &
                                   + (part(ip)%foot%yv(i) - part(ip)%yorigo)**2 )*0.5 &
                             + sqrt( (part(ip)%foot%xh(j) - part(ip)%xorigo)**2 &
                                   + (part(ip)%foot%yh(j) - part(ip)%yorigo)**2 )*0.5
 
-   case(5)
-      ! 150 degres take distance to max point on right foot
-      i=1
-      part(ip)%foot%dist(id)= sqrt( (part(ip)%foot%xh(i) - part(ip)%xorigo)**2 &
-                                  + (part(ip)%foot%yh(i) - part(ip)%yorigo)**2 )
-
-   case(7)
-      ! 210 degres take distance to max point on left foot
-      i=1
-      part(ip)%foot%dist(id)= sqrt( (part(ip)%foot%xv(i) - part(ip)%xorigo)**2 &
-                                  + (part(ip)%foot%yv(i) - part(ip)%yorigo)**2 )
+!   case(5)
+!      ! 150 degres take distance to max point on right foot
+!      i=1
+!      part(ip)%foot%dist(id)= sqrt( (part(ip)%foot%xh(i) - part(ip)%xorigo)**2 &
+!                                  + (part(ip)%foot%yh(i) - part(ip)%yorigo)**2 )
+!
+!   case(7)
+!      ! 210 degres take distance to max point on left foot
+!      i=1
+!      part(ip)%foot%dist(id)= sqrt( (part(ip)%foot%xv(i) - part(ip)%xorigo)**2 &
+!                                  + (part(ip)%foot%yv(i) - part(ip)%yorigo)**2 )
 
    case(6)
       ! 180 degres take average distance to min point from both feet
@@ -53,7 +53,7 @@ subroutine pickfootpoint(ip,id)
                             + sqrt( (part(ip)%foot%xh(i) - part(ip)%xorigo)**2 &
                                   + (part(ip)%foot%yh(i) - part(ip)%yorigo)**2 )*0.5
 
-   case(2,3,4)
+   case(1,2,3,4,5)
       theta=360.0
       idpos=1
       do i=1,part(ip)%foot%nrlinesh
@@ -67,7 +67,7 @@ subroutine pickfootpoint(ip,id)
       part(ip)%foot%dist(id)= sqrt( (part(ip)%foot%xh(i) - part(ip)%xorigo)**2 &
                                   + (part(ip)%foot%yh(i) - part(ip)%yorigo)**2 )
 
-   case(8,9,10)
+   case(7,8,9,10,11)
       theta=360.0
       idpos=1
       do i=1,part(ip)%foot%nrlinesv

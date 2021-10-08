@@ -171,9 +171,12 @@ pack( r, g, b ) = 2**16*r + 2**8*g + b
 set key noautotitle
 set size 1.0, 1.0
 ## Last datafile plotted: "test.dat"
-set style line  1 linewidth 2 linecolor rgb '#990042'        pointsize 0.75 pointtype 6 pointinterval 2
-set style line  2 linewidth 2 linecolor rgb pack(231,41,138) pointsize 0.75 pointtype 6 pointinterval 2
-set style line  3 linewidth 2 linecolor rgb '#0044a5'        pointsize 0.75 pointtype 6 pointinterval 2
+#003f5c
+#bc5090
+#ffa600
+set style line  1 linewidth 2 linecolor rgb '#003f5c'        pointsize 0.75 pointtype 6 pointinterval 2
+set style line  2 linewidth 2 linecolor rgb '#bc5090'        pointsize 0.75 pointtype 6 pointinterval 2
+set style line  3 linewidth 2 linecolor rgb '#ffa600'        pointsize 0.75 pointtype 6 pointinterval 2
 set style line  4 linewidth 2 linecolor rgb '#888888'        pointsize 0.75 pointtype 6 pointinterval 2
 set style line  5 linewidth 2 linecolor rgb pack(117,112,179) pointsize 0.75 pointtype 6 pointinterval 2
 set style line  6 linewidth 2 linecolor rgb pack(231,41,138) pointsize 0.75 pointtype 6 pointinterval 2
@@ -189,35 +192,35 @@ set style data lines
 #
 #   1         2        3         4         5         6         7         8         9        10        11        12        13        14        15        16        17        18        19        20        21        22        23        24        25        26
 # ind distance2   pos1(x) 2 pos1(y)   pos1(z)   pos2(x)   pos2(y)   pos2(z)    ed1(x)    ed1(y)    ed1(z)    ed9(x)    ed9(y)    ed9(z)    ee6(x)    ee6(y)    ee6(z)    efa(x)    efa(y)    efa(z)    eff(x)    eff(y)    eff(z)    ff0(x)    ff0(y)    ff0(z)
-participant="12"
-direction="04"
-speed="3"
+participant="10"
+direction="03"
+speed="2"
 plot participant."_".direction."_".speed.".out"  using 2:9  linestyle 1 title "ed1x",\
      participant."_".direction."_".speed.".out"  using 2:10 linestyle 2 title "ed1y",\
      participant."_".direction."_".speed.".out"  using 2:11 linestyle 3 title "ed1z"
 pause -1
 
-plot participant."_".direction."_".speed.".out"  using 2:12 linestyle 2 title "ed9x",\
+plot participant."_".direction."_".speed.".out"  using 2:12 linestyle 1 title "ed9x",\
      participant."_".direction."_".speed.".out"  using 2:13 linestyle 2 title "ed9y",\
      participant."_".direction."_".speed.".out"  using 2:14 linestyle 3 title "ed9z"
 pause -1
 
-plot participant."_".direction."_".speed.".out"  using 2:15 linestyle 2 title "ee6x",\
+plot participant."_".direction."_".speed.".out"  using 2:15 linestyle 1 title "ee6x",\
      participant."_".direction."_".speed.".out"  using 2:16 linestyle 2 title "ee6y",\
      participant."_".direction."_".speed.".out"  using 2:17 linestyle 3 title "ee6z"
 pause -1
 
-plot participant."_".direction."_".speed.".out"  using 2:18 linestyle 2 title "efax",\
-     participant."_".direction."_".speed.".out"  using 2:19 linestyle 3 title "efay",\
-     participant."_".direction."_".speed.".out"  using 2:20 linestyle 4 title "efaz"
+plot participant."_".direction."_".speed.".out"  using 2:18 linestyle 1 title "efax",\
+     participant."_".direction."_".speed.".out"  using 2:19 linestyle 2 title "efay",\
+     participant."_".direction."_".speed.".out"  using 2:20 linestyle 3 title "efaz"
 pause -1
 
-plot participant."_".direction."_".speed.".out"  using 2:21 linestyle 2 title "effx",\
-     participant."_".direction."_".speed.".out"  using 2:22 linestyle 3 title "effy",\
-     participant."_".direction."_".speed.".out"  using 2:23 linestyle 4 title "effz"
+plot participant."_".direction."_".speed.".out"  using 2:21 linestyle 1 title "effx",\
+     participant."_".direction."_".speed.".out"  using 2:22 linestyle 2 title "effy",\
+     participant."_".direction."_".speed.".out"  using 2:23 linestyle 3 title "effz"
 pause -1
 
-plot participant."_".direction."_".speed.".out"  using 2:24 linestyle 2 title "ff0x",\
-     participant."_".direction."_".speed.".out"  using 2:25 linestyle 3 title "ff0y",\
-     participant."_".direction."_".speed.".out"  using 2:26 linestyle 4 title "ff0z"
+plot participant."_".direction."_".speed.".out"  using 2:24 linestyle 1 title "ff0x",\
+     participant."_".direction."_".speed.".out"  using 2:25 linestyle 2 title "ff0y",\
+     participant."_".direction."_".speed.".out"  using 2:26 linestyle 3 title "ff0z"
 pause -1

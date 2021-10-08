@@ -14,7 +14,7 @@ program axis
    integer :: is
 
 ! Reading all data and truncating unneeded data lines
-   do ip=12,12 !nrparticipants
+   do ip=10,10 !nrparticipants
       if ( ip == 9  ) cycle
       if ( ip == 13 ) cycle
       if ( ip == 25 ) cycle
@@ -29,7 +29,7 @@ program axis
    enddo
 
 ! Processing
-   do ip=12,12 !nrparticipants
+   do ip=10,10 !nrparticipants
       if ( ip == 9  ) cycle
       if ( ip == 13 ) cycle
       if ( ip == 25 ) cycle
