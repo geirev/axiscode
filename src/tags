@@ -5,18 +5,26 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 100	m_readexperiment.F90	/^      100 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
+100	m_readfootdata.F90	/^      100 nrlines=i-1$/;"	l	subroutine:readfootdata	file:
 101	m_readexperiment.F90	/^      101 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
-102	m_readexperiment.F90	/^      102 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
+102	m_readexperiment.F90	/^      102 close(10)$/;"	l	subroutine:readexperiment	file:
 103	m_readexperiment.F90	/^      103 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
 104	m_readexperiment.F90	/^      104 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
 105	m_readexperiment.F90	/^      105 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
 106	m_readexperiment.F90	/^      106 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
-200	m_readfootdata.F90	/^      200 nrlines=i-1$/;"	l	subroutine:readfootdata	file:
+201	m_readexperiment.F90	/^      201 nrlines=i-1$/;"	l	subroutine:readexperiment	file:
+202	m_readexperiment.F90	/^      202 close(10)$/;"	l	subroutine:readexperiment	file:
+203	m_readexperiment.F90	/^      203 close(10)$/;"	l	subroutine:readexperiment	file:
+204	m_readexperiment.F90	/^      204 close(10)$/;"	l	subroutine:readexperiment	file:
+205	m_readexperiment.F90	/^      205 close(10)$/;"	l	subroutine:readexperiment	file:
+206	m_readexperiment.F90	/^      206 close(10)$/;"	l	subroutine:readexperiment	file:
+accbias	m_accbias.F90	/^subroutine accbias(/;"	s	module:m_accbias
 axis	main.F90	/^program axis$/;"	p
 coord	m_state.F90	/^   type coord$/;"	t	module:m_state
 dir_project	m_setup.F90	/^   character(len=100) :: dir_project=/;"	v	module:m_setup
 dirh	m_state.F90	/^      real dirh(/;"	k	type:footdata
 dirv	m_state.F90	/^      real dirv(/;"	k	type:footdata
+dist	m_state.F90	/^      real dist(/;"	k	type:footdata
 dist2	m_state.F90	/^      real        :: dist2(/;"	k	type:experiment
 ed1	m_state.F90	/^      type(coord) :: ed1(/;"	k	type:experiment
 ed9	m_state.F90	/^      type(coord) :: ed9(/;"	k	type:experiment
@@ -39,6 +47,7 @@ lefa	m_state.F90	/^      logical lpos,led1,led9,lee6,lefa,/;"	k	type:experiment
 leff	m_state.F90	/^      logical lpos,led1,led9,lee6,lefa,leff,/;"	k	type:experiment
 lf00	m_state.F90	/^      logical lpos,led1,led9,lee6,lefa,leff,lf00$/;"	k	type:experiment
 lpos	m_state.F90	/^      logical lpos,/;"	k	type:experiment
+m_accbias	m_accbias.F90	/^module m_accbias$/;"	m
 m_footpointsdir	m_footpointsdir.F90	/^module m_footpointsdir$/;"	m
 m_newnrlines	m_newnrlines.F90	/^module m_newnrlines$/;"	m
 m_pickfootpoint	m_pickfootpoint.F90	/^module m_pickfootpoint$/;"	m
@@ -46,13 +55,15 @@ m_readexperiment	m_readexperiment.F90	/^module m_readexperiment$/;"	m
 m_readfootdata	m_readfootdata.F90	/^module m_readfootdata$/;"	m
 m_referencepoint	m_referencepoint.F90	/^module m_referencepoint$/;"	m
 m_setup	m_setup.F90	/^module m_setup$/;"	m
+m_speedcalc	m_speedcalc.F90	/^module m_speedcalc$/;"	m
 m_state	m_state.F90	/^module m_state$/;"	m
 m_writeoutfile	m_writeoutfile.F90	/^module m_writeoutfile$/;"	m
 newnrlines	m_newnrlines.F90	/^subroutine newnrlines(/;"	s	module:m_newnrlines
 nrdirections	m_state.F90	/^   integer, parameter :: nrdirections=/;"	v	module:m_state
 nrfootpoints	m_state.F90	/^   integer, parameter :: nrfootpoints=/;"	v	module:m_state
 nrlines	m_state.F90	/^      integer nrlines$/;"	k	type:experiment
-nrlines	m_state.F90	/^      integer nrlines$/;"	k	type:footdata
+nrlinesh	m_state.F90	/^      integer nrlinesh$/;"	k	type:footdata
+nrlinesv	m_state.F90	/^      integer nrlinesv$/;"	k	type:footdata
 nrlmax	m_state.F90	/^   integer, parameter :: nrlmax=/;"	v	module:m_state
 nrparticipants	m_state.F90	/^   integer, parameter :: nrparticipants=/;"	v	module:m_state
 nrspeeds	m_state.F90	/^   integer, parameter :: nrspeeds=/;"	v	module:m_state
@@ -64,6 +75,8 @@ pos2	m_state.F90	/^      type(coord) :: pos2(/;"	k	type:experiment
 readexperiment	m_readexperiment.F90	/^subroutine readexperiment(/;"	s	module:m_readexperiment
 readfootdata	m_readfootdata.F90	/^subroutine readfootdata(/;"	s	module:m_readfootdata
 referencepoint	m_referencepoint.F90	/^subroutine referencepoint(/;"	s	module:m_referencepoint
+speed	m_state.F90	/^      real        :: speed(/;"	k	type:experiment
+speedcalc	m_speedcalc.F90	/^subroutine speedcalc(/;"	s	module:m_speedcalc
 subdir_acc	m_setup.F90	/^   character(len=3)   :: subdir_acc=/;"	v	module:m_setup
 subdir_foot	m_setup.F90	/^   character(len=6)   :: subdir_foot=/;"	v	module:m_setup
 subdir_pos	m_setup.F90	/^   character(len=11)  :: subdir_pos=/;"	v	module:m_setup

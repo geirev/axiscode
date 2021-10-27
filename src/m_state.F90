@@ -17,6 +17,7 @@ module m_state
       integer nrlines
       logical lpos,led1,led9,lee6,lefa,leff,lf00
       real        :: dist2(nrlmax)
+      real        :: speed(nrlmax)
       type(coord) :: pos1(nrlmax)
       type(coord) :: pos2(nrlmax)
       type(coord) :: ed1(nrlmax)

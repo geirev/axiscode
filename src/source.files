@@ -1,4 +1,5 @@
 MODULES = \
+	m_accbias.F90\
 	m_footpointsdir.F90\
 	m_newnrlines.F90\
 	m_pickfootpoint.F90\
@@ -6,7 +7,9 @@ MODULES = \
 	m_readfootdata.F90\
 	m_referencepoint.F90\
 	m_setup.F90\
+	m_speedcalc.F90\
 	m_state.F90\
+	m_writefootdata.F90\
 	m_writeoutfile.F90
 
 F90FILES = \

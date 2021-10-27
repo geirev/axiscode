@@ -26,8 +26,6 @@ subroutine readfootdata(ip)
          read(10,*,end=100)tmp
       enddo
       100 nrlines=i-1
-
-      print *,'nrlines=',nrlines
       close(10)
 
       open(10,file=trim(filename))

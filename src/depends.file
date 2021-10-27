@@ -1,3 +1,7 @@
+m_accbias.o:      makefile
+m_accbias.o:      MODEL.CPP
+m_accbias.o:      m_state.o
+main.o:      m_accbias.o
 main.o:      makefile
 main.o:      m_footpointsdir.o
 main.o:      m_newnrlines.o
@@ -7,7 +11,9 @@ main.o:      m_readexperiment.o
 main.o:      m_readfootdata.o
 main.o:      m_referencepoint.o
 main.o:      m_setup.o
+main.o:      m_speedcalc.o
 main.o:      m_state.o
+main.o:      m_writefootdata.o
 main.o:      m_writeoutfile.o
 m_footpointsdir.o:      makefile
 m_footpointsdir.o:      MODEL.CPP
@@ -31,8 +37,15 @@ m_referencepoint.o:      MODEL.CPP
 m_referencepoint.o:      m_state.o
 m_setup.o:      makefile
 m_setup.o:      MODEL.CPP
+m_speedcalc.o:      makefile
+m_speedcalc.o:      MODEL.CPP
+m_speedcalc.o:      m_state.o
 m_state.o:      makefile
 m_state.o:      MODEL.CPP
+m_writefootdata.o:      makefile
+m_writefootdata.o:      MODEL.CPP
+m_writefootdata.o:      m_setup.o
+m_writefootdata.o:      m_state.o
 m_writeoutfile.o:      makefile
 m_writeoutfile.o:      MODEL.CPP
 m_writeoutfile.o:      m_setup.o

@@ -15,12 +15,13 @@ subroutine readexperiment(ip,id,is)
 
    write(fileprefix,'(i2.2,a,i2.2,a,i1.1)')ip,'_',id,'_',is
 
-
+   write(*,'(a)',advance='no')'Reading: '
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading position data x1 ,y1, z1, x2 ,y2, z2
    ! part(1-67)%expr(1-12,1:3)%pos2(1:nrlmax)%x
    filename=trim(dir_project)//'/'//subdir_pos//'/'//fileprefix//'.xyz'
-   print *,'reading filename=',trim(filename)
+!   print *,'reading filename=',trim(filename)
+   write(*,'(tr1,a)',advance='no')'pos'
 
    inquire(file=trim(filename),exist=ex)
    if (ex) then
@@ -49,14 +50,18 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+   write(*,'(tr1,a)',advance='no')'ED1'
       part(ip)%expr(id,is)%led1=.true.
       open(10,file=trim(filename))
-      read(10,'(a)')header
+      i=0
+      read(10,'(a)',end=102)header
       do i=1,nrlines
          read(10,*,end=101)tmp,part(ip)%expr(id,is)%ed1(i)
       enddo
       101 nrlines=i-1
-      close(10)
+      102 close(10)
+      if (i == 0) part(ip)%expr(id,is)%led1=.false.
+      if (i == 0) nrlines=0
    else
       part(ip)%expr(id,is)%led1=.false.
    endif
@@ -68,14 +73,18 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+   write(*,'(tr1,a)',advance='no')'ED9'
       part(ip)%expr(id,is)%led9=.true.
       open(10,file=trim(filename))
-      read(10,'(a)')header
+      i=0
+      read(10,'(a)',end=202)header
       do i=1,nrlines
-         read(10,*,end=102)tmp,part(ip)%expr(id,is)%ed9(i)
+         read(10,*,end=201)tmp,part(ip)%expr(id,is)%ed9(i)
       enddo
-      102 nrlines=i-1
-      close(10)
+      201 nrlines=i-1
+      202 close(10)
+      if (i == 0) part(ip)%expr(id,is)%led9=.false.
+      if (i == 0) nrlines=0
    else
       part(ip)%expr(id,is)%led9=.false.
    endif
@@ -86,14 +95,17 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+   write(*,'(tr1,a)',advance='no')'EE6'
       part(ip)%expr(id,is)%lee6=.true.
       open(10,file=trim(filename))
-      read(10,'(a)')header
+      read(10,'(a)',end=203)header
       do i=1,nrlines
          read(10,*,end=103)tmp,part(ip)%expr(id,is)%ee6(i)
       enddo
       103 nrlines=i-1
-      close(10)
+      203 close(10)
+      if (i == 0) part(ip)%expr(id,is)%lee6=.false.
+      if (i == 0) nrlines=0
    else
       part(ip)%expr(id,is)%lee6=.false.
    endif
@@ -104,14 +116,17 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+   write(*,'(tr1,a)',advance='no')'EFA'
       part(ip)%expr(id,is)%lefa=.true.
       open(10,file=trim(filename))
-      read(10,'(a)')header
+      read(10,'(a)',end=204)header
       do i=1,nrlines
          read(10,*,end=104)tmp,part(ip)%expr(id,is)%efa(i)
       enddo
       104 nrlines=i-1
-      close(10)
+      204 close(10)
+      if (i == 0) part(ip)%expr(id,is)%lefa=.false.
+      if (i == 0) nrlines=0
    else
       part(ip)%expr(id,is)%lefa=.false.
    endif
@@ -122,14 +137,17 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+   write(*,'(tr1,a)',advance='no')'EFF'
       part(ip)%expr(id,is)%leff=.true.
       open(10,file=trim(filename))
-      read(10,'(a)')header
+      read(10,'(a)',end=205)header
       do i=1,nrlines
          read(10,*,end=105)tmp,part(ip)%expr(id,is)%eff(i)
       enddo
       105 nrlines=i-1
-      close(10)
+      205 close(10)
+      if (i == 0) part(ip)%expr(id,is)%leff=.false.
+      if (i == 0) nrlines=0
    else
       part(ip)%expr(id,is)%leff=.false.
    endif
@@ -140,14 +158,17 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+   write(*,'(tr1,a)')'F00'
       part(ip)%expr(id,is)%lf00=.true.
       open(10,file=trim(filename))
-      read(10,'(a)')header
+      read(10,'(a)',end=206)header
       do i=1,nrlines
          read(10,*,end=106)tmp,part(ip)%expr(id,is)%f00(i)
       enddo
       106 nrlines=i-1
-      close(10)
+      206 close(10)
+      if (i == 0) part(ip)%expr(id,is)%lf00=.false.
+      if (i == 0) nrlines=0
    else
       part(ip)%expr(id,is)%lf00=.false.
    endif

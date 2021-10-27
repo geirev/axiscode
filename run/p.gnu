@@ -225,4 +225,4 @@ plot "foot.dat" using 2:3 pointtype 1 linewidth 1 linecolor rgb pack(117,112,179
      "28_11_3.out"  using 6:7 linestyle 1 title "pos2 28-11-3",\
      "28_12_3.out"  using 6:7 linestyle 2 title "pos2 28-12-3"
 pause -1
-" ind distance2   pos1(x)   pos1(y)   pos1(z)   pos2(x)   pos2(y)   pos2(z)    ed1(x)    ed1(y)    ed1(z)    ed9(x)    ed9(y)    ed9(z)    ee6(x)    ee6(y)    ee6(z)    efa(x)    efa(y)    efa(z)    eff(x)    eff(y)    eff(z)    ff0(x)    ff0(y)    ff0(z)
+" ind distance2   pos1(x)   pos1(y)   pos1(z)   pos2(x)   pos2(y)   pos2(z)    ed1(x)    ed1(y)    ed1(z)    ed9(x)    ed9(y)    ed9(z)    ee6(x)    ee6(y)    ee6(z)    efa(x)    efa(y)    efa(z)    eff(x)    eff(y)    eff(z)    f00(x)    f00(y)    f00(z)

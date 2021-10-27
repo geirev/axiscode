@@ -7,20 +7,19 @@ subroutine writeoutfile(ip,id,is)
    integer, intent(in) :: id  ! direction number (1-12)
    integer, intent(in) :: is  ! speed number (1-3)
    character(len=7) fileprefix
-   character(len=2) cip
    character(len=100) filename
    integer i
 
    write(fileprefix,'(i2.2,a,i2.2,a,i1.1)')ip,'_',id,'_',is
-   print *,'writeoutfile fileprefix=',fileprefix
+!   print *,'writeoutfile fileprefix=',fileprefix
 
    filename=fileprefix//'.out'
    print *,'writing filename=',trim(filename)
 
-   if (part(ip)%expr(id,is)%nrlines < 50) return
+   !  if (part(ip)%expr(id,is)%nrlines < 50) return
 
    open(10,file=trim(filename))
-      write(10,'(a4,25a10)')'ind',' distance2',&
+      write(10,'(a4,26a10)')'ind',' distance2',&
                                   '   pos1(x)',&
                                   '   pos1(y)',&
                                   '   pos1(z)',&
@@ -42,11 +41,12 @@ subroutine writeoutfile(ip,id,is)
                                   '    eff(x)',&
                                   '    eff(y)',&
                                   '    eff(z)',&
-                                  '    ff0(x)',&
-                                  '    ff0(y)',&
-                                  '    ff0(z)'
+                                  '    f00(x)',&
+                                  '    f00(y)',&
+                                  '    f00(z)',&
+                                  'speed mm/s'
       do i=1,part(ip)%expr(id,is)%nrlines
-         write(10,'(i4,25f10.3)')i,part(ip)%expr(id,is)%dist2(i)/part(ip)%foot%dist(id), &
+         write(10,'(i4,26f10.3)')i,part(ip)%expr(id,is)%dist2(i)/part(ip)%foot%dist(id), &
                                    part(ip)%expr(id,is)%pos1(i),  &
                                    part(ip)%expr(id,is)%pos2(i),  &
                                    part(ip)%expr(id,is)%ed1(i),   &
@@ -54,34 +54,9 @@ subroutine writeoutfile(ip,id,is)
                                    part(ip)%expr(id,is)%ee6(i),   &
                                    part(ip)%expr(id,is)%efa(i),   &
                                    part(ip)%expr(id,is)%eff(i),   &
-                                   part(ip)%expr(id,is)%f00(i)
+                                   part(ip)%expr(id,is)%f00(i),   &
+                                   10.0*part(ip)%expr(id,is)%speed(i)
       enddo
-   close(10)
-
-
-   write(cip,'(i2.2)')ip
-   filename=cip//'_footright.out'
-   print *,'writing filename=',trim(filename)
-   open(10,file=trim(filename))
-      write(10,'(a4,6a10)')'ind','     xh(i)','     yh(i)','   dirh(i)'
-      do i=1,part(ip)%foot%nrlinesh
-         write(10,'(i4,3f10.3)')i,part(ip)%foot%xh(i),part(ip)%foot%yh(i),part(ip)%foot%dirh(i)
-      enddo
-   close(10)
-
-   filename=cip//'_footleft.out'
-   print *,'writing filename=',trim(filename)
-   open(10,file=trim(filename))
-      write(10,'(a4,6a10)')'ind','     xv(i)','     yv(i)','   dirv(i)'
-      do i=1,part(ip)%foot%nrlinesv
-         write(10,'(i4,3f10.3)')i,part(ip)%foot%xv(i),part(ip)%foot%yv(i),part(ip)%foot%dirv(i)
-      enddo
-   close(10)
-
-   filename=cip//'_origo.out'
-   print *,'writing filename=',trim(filename)
-   open(10,file=trim(filename))
-      write(10,'(6(3f10.3))')part(ip)%xorigo,part(ip)%yorigo
    close(10)
 
 end subroutine
