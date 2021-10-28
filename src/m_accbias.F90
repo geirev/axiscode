@@ -7,8 +7,6 @@ subroutine accbias(ip,id,is)
    integer, intent(in) :: is  ! speed number (1-3)
    real bias
 
-   if (part(ip)%expr(id,is)%nrlines < 50) return
-
    bias=sum(part(ip)%expr(id,is)%ed1(1:10)%x)/10.0
    part(ip)%expr(id,is)%ed1(:)%x=part(ip)%expr(id,is)%ed1(:)%x-bias
 

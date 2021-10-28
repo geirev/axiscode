@@ -2,6 +2,7 @@ program axis
    use m_setup
    use m_state
    use m_readexperiment
+   use m_writeexperiment
    use m_readfootdata
    use m_referencepoint
    use m_newnrlines
@@ -17,7 +18,7 @@ program axis
    integer :: is
 
 ! Reading all data and truncating unneeded data lines
-   do ip=01,02 !nrparticipants
+   do ip=01,67 !nrparticipants
       if ( ip == 9  ) cycle
       if ( ip == 13 ) cycle
       if ( ip == 25 ) cycle
@@ -27,12 +28,14 @@ program axis
       do id=1,nrdirections
          do is=1,nrspeeds
             call readexperiment(ip,id,is)
+            call accbias(ip,id,is)
+            call writeexperiment(ip,id,is)
          enddo
       enddo
    enddo
 
 ! Processing
-   do ip=01,02 !nrparticipants
+   do ip=01,67 !nrparticipants
       if ( ip == 9  ) cycle
       if ( ip == 13 ) cycle
       if ( ip == 25 ) cycle
@@ -52,7 +55,6 @@ program axis
          do is=1,nrspeeds
             call newnrlines(ip,id,is)
             call speedcalc(ip,id,is)
-            call accbias(ip,id,is)
             call writeoutfile(ip,id,is)
          enddo
       enddo

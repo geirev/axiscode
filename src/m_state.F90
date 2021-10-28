@@ -1,8 +1,9 @@
 module m_state
+   public :: coord, assignment(=)
    integer, parameter :: nrparticipants=67
    integer, parameter :: nrdirections=12
    integer, parameter :: nrspeeds=3
-   integer, parameter :: nrlmax=1000
+   integer, parameter :: nrlmax=2000
 
    integer, parameter :: nrfootpoints=50
 
@@ -51,5 +52,47 @@ module m_state
    ! part(1-67)%expr(1-12,1:3)%pos2(1:nrlmax)%x
    ! part(1-67)%foot%xh(i)
    ! part(1-67)%foot%nrlines
+
+   interface assignment(=)
+      module procedure assign_coord
+      module procedure assign_experiment
+   end interface
+
+   contains
+   subroutine assign_coord(A,r)
+      type(coord), intent(out) :: A
+      real, intent(in) :: r
+      A%x       = r
+      A%y       = r
+      A%z       = r
+   end subroutine assign_coord
+
+   subroutine assign_experiment(A,r)
+      type(experiment), intent(out) :: A
+      real, intent(in) :: r
+      integer i
+      A%nrlines=0
+      A%lpos=.false.
+      A%led1=.false.
+      A%led9=.false.
+      A%lee6=.false.
+      A%lefa=.false.
+      A%leff=.false.
+      A%lf00=.false.
+      do i=1,nrlmax
+         A%dist2(i)=r
+         A%speed(i)=r
+         A%pos1(i)=r
+         A%pos2(i)=r
+         A%ed1(i)=r
+         A%ed9(i)=r
+         A%ee6(i)=r
+         A%efa(i)=r
+         A%eff(i)=r
+         A%f00(i)=r
+      enddo
+   end subroutine assign_experiment
+
+
 
 end module

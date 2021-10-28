@@ -13,8 +13,11 @@ main.o:      m_referencepoint.o
 main.o:      m_setup.o
 main.o:      m_speedcalc.o
 main.o:      m_state.o
+main.o:      m_writeexperiment.o
 main.o:      m_writefootdata.o
 main.o:      m_writeoutfile.o
+m_ansi_colors.o:      makefile
+m_ansi_colors.o:      MODEL.CPP
 m_footpointsdir.o:      makefile
 m_footpointsdir.o:      MODEL.CPP
 m_footpointsdir.o:      m_state.o
@@ -25,6 +28,7 @@ m_pickfootpoint.o:      makefile
 m_pickfootpoint.o:      MODEL.CPP
 m_pickfootpoint.o:      m_state.o
 m_readexperiment.o:      makefile
+m_readexperiment.o:      m_ansi_colors.o
 m_readexperiment.o:      MODEL.CPP
 m_readexperiment.o:      m_setup.o
 m_readexperiment.o:      m_state.o
@@ -42,6 +46,11 @@ m_speedcalc.o:      MODEL.CPP
 m_speedcalc.o:      m_state.o
 m_state.o:      makefile
 m_state.o:      MODEL.CPP
+m_writeexperiment.o:      makefile
+m_writeexperiment.o:      m_ansi_colors.o
+m_writeexperiment.o:      MODEL.CPP
+m_writeexperiment.o:      m_setup.o
+m_writeexperiment.o:      m_state.o
 m_writefootdata.o:      makefile
 m_writefootdata.o:      MODEL.CPP
 m_writefootdata.o:      m_setup.o

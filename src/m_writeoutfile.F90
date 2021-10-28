@@ -14,7 +14,13 @@ subroutine writeoutfile(ip,id,is)
 !   print *,'writeoutfile fileprefix=',fileprefix
 
    filename=fileprefix//'.out'
-   print *,'writing filename=',trim(filename)
+   if (is == 1) then
+      write(*,'(2a)',advance='no')'writing: ',trim(filename)
+   elseif(is==2) then
+      write(*,'(tr1,a)',advance='no')trim(filename)
+   else
+      write(*,'(tr1,a)')trim(filename)
+   endif
 
    !  if (part(ip)%expr(id,is)%nrlines < 50) return
 

@@ -1,7 +1,19 @@
 module m_readexperiment
 use m_setup
 use m_state
+use m_ansi_colors
 contains
+
+   integer function lpstat(ident,lstat)
+      character(len=*), intent(in) :: ident
+      logical,          intent(in) :: lstat
+      if (lstat) then
+         write(*,'(tr1,2a,a,a)',advance='no')color(ident,c_green),'(',color('T',c_green),')'
+      else
+         write(*,'(tr1,2a,a,a)',advance='no')color(ident,c_magenta),'(',color('F',c_magenta),')'
+      endif
+   end function
+
 subroutine readexperiment(ip,id,is)
    integer, intent(in) :: ip  ! participant number (1-67)
    integer, intent(in) :: id  ! direction number (1-12)
@@ -15,13 +27,13 @@ subroutine readexperiment(ip,id,is)
 
    write(fileprefix,'(i2.2,a,i2.2,a,i1.1)')ip,'_',id,'_',is
 
-   write(*,'(a)',advance='no')'Reading: '
+   write(*,'(a,a,tr1)',advance='no')'Reading: ',color(fileprefix,c_yellow)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading position data x1 ,y1, z1, x2 ,y2, z2
    ! part(1-67)%expr(1-12,1:3)%pos2(1:nrlmax)%x
    filename=trim(dir_project)//'/'//subdir_pos//'/'//fileprefix//'.xyz'
-!   print *,'reading filename=',trim(filename)
-   write(*,'(tr1,a)',advance='no')'pos'
+
+   part(ip)%expr(id,is)=0.0
 
    inquire(file=trim(filename),exist=ex)
    if (ex) then
@@ -43,6 +55,7 @@ subroutine readexperiment(ip,id,is)
    else
       part(ip)%expr(id,is)%lpos=.false.
    endif
+   i=lpstat('POS',part(ip)%expr(id,is)%lpos)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading ED1 acceleration data x ,y, z
@@ -50,7 +63,6 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-   write(*,'(tr1,a)',advance='no')'ED1'
       part(ip)%expr(id,is)%led1=.true.
       open(10,file=trim(filename))
       i=0
@@ -65,6 +77,7 @@ subroutine readexperiment(ip,id,is)
    else
       part(ip)%expr(id,is)%led1=.false.
    endif
+   i=lpstat('ED1',part(ip)%expr(id,is)%led1)
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -73,7 +86,6 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-   write(*,'(tr1,a)',advance='no')'ED9'
       part(ip)%expr(id,is)%led9=.true.
       open(10,file=trim(filename))
       i=0
@@ -88,6 +100,7 @@ subroutine readexperiment(ip,id,is)
    else
       part(ip)%expr(id,is)%led9=.false.
    endif
+   i=lpstat('ED9',part(ip)%expr(id,is)%led9)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading EE6 acceleration data x ,y, z
@@ -95,7 +108,6 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-   write(*,'(tr1,a)',advance='no')'EE6'
       part(ip)%expr(id,is)%lee6=.true.
       open(10,file=trim(filename))
       read(10,'(a)',end=203)header
@@ -109,6 +121,7 @@ subroutine readexperiment(ip,id,is)
    else
       part(ip)%expr(id,is)%lee6=.false.
    endif
+   i=lpstat('EE6',part(ip)%expr(id,is)%lee6)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading EFA acceleration data x ,y, z
@@ -116,7 +129,6 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-   write(*,'(tr1,a)',advance='no')'EFA'
       part(ip)%expr(id,is)%lefa=.true.
       open(10,file=trim(filename))
       read(10,'(a)',end=204)header
@@ -130,6 +142,7 @@ subroutine readexperiment(ip,id,is)
    else
       part(ip)%expr(id,is)%lefa=.false.
    endif
+   i=lpstat('EFA',part(ip)%expr(id,is)%lefa)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading EFF acceleration data x ,y, z
@@ -137,7 +150,6 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-   write(*,'(tr1,a)',advance='no')'EFF'
       part(ip)%expr(id,is)%leff=.true.
       open(10,file=trim(filename))
       read(10,'(a)',end=205)header
@@ -151,6 +163,7 @@ subroutine readexperiment(ip,id,is)
    else
       part(ip)%expr(id,is)%leff=.false.
    endif
+   i=lpstat('EFF',part(ip)%expr(id,is)%leff)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading acceleration data x ,y, z
@@ -158,7 +171,6 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-   write(*,'(tr1,a)')'F00'
       part(ip)%expr(id,is)%lf00=.true.
       open(10,file=trim(filename))
       read(10,'(a)',end=206)header
@@ -172,8 +184,13 @@ subroutine readexperiment(ip,id,is)
    else
       part(ip)%expr(id,is)%lf00=.false.
    endif
-
    part(ip)%expr(id,is)%nrlines=nrlines
+   i=lpstat('F00',part(ip)%expr(id,is)%lf00)
+   if (nrlines > 0) then
+      print '(a,i4)',' nrlines=',nrlines
+   else
+      print '(a)',' '
+   endif
 
 
 end subroutine
