@@ -5,6 +5,7 @@ use m_ansi_colors
 contains
 
 subroutine writeexperiment(ip,id,is)
+   ! writing out bias corrected acceleratrion data
    integer, intent(in) :: ip  ! participant number (1-67)
    integer, intent(in) :: id  ! direction number (1-12)
    integer, intent(in) :: is  ! speed number (1-3)
@@ -24,7 +25,7 @@ subroutine writeexperiment(ip,id,is)
    if (part(ip)%expr(id,is)%led1) then
       open(10,file=trim(filename))
       write(10,'(a)')trim(header)
-      do i=1,part(ip)%expr(id,is)%nrlines
+      do i=1,part(ip)%expr(id,is)%ned1
          write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%ed1(i)
       enddo
       close(10)
@@ -37,7 +38,7 @@ subroutine writeexperiment(ip,id,is)
    if (part(ip)%expr(id,is)%led9) then
       open(10,file=trim(filename))
       write(10,'(a)')header
-      do i=1,part(ip)%expr(id,is)%nrlines
+      do i=1,part(ip)%expr(id,is)%ned9
          write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%ed9(i)
       enddo
       close(10)
@@ -49,7 +50,7 @@ subroutine writeexperiment(ip,id,is)
    if (part(ip)%expr(id,is)%lee6) then
       open(10,file=trim(filename))
       write(10,'(a)')header
-      do i=1,part(ip)%expr(id,is)%nrlines
+      do i=1,part(ip)%expr(id,is)%nee6
          write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%ee6(i)
       enddo
       close(10)
@@ -61,7 +62,7 @@ subroutine writeexperiment(ip,id,is)
    if (part(ip)%expr(id,is)%lefa) then
       open(10,file=trim(filename))
       write(10,'(a)')header
-      do i=1,part(ip)%expr(id,is)%nrlines
+      do i=1,part(ip)%expr(id,is)%nefa
          write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%efa(i)
       enddo
       close(10)
@@ -73,7 +74,7 @@ subroutine writeexperiment(ip,id,is)
    if (part(ip)%expr(id,is)%leff) then
       open(10,file=trim(filename))
       write(10,'(a)')header
-      do i=1,part(ip)%expr(id,is)%nrlines
+      do i=1,part(ip)%expr(id,is)%neff
          write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%eff(i)
       enddo
       close(10)
@@ -85,7 +86,7 @@ subroutine writeexperiment(ip,id,is)
    if (part(ip)%expr(id,is)%lf00) then
       open(10,file=trim(filename))
       write(10,'(a)')header
-      do i=1,part(ip)%expr(id,is)%nrlines
+      do i=1,part(ip)%expr(id,is)%nf00
          write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%f00(i)
       enddo
       close(10)

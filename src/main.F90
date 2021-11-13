@@ -9,6 +9,7 @@ program axis
    use m_speedcalc
    use m_writeoutfile
    use m_writefootdata
+   use m_referencepos
    use m_accbias
    use m_footpointsdir
    use m_pickfootpoint
@@ -18,7 +19,7 @@ program axis
    integer :: is
 
 ! Reading all data and truncating unneeded data lines
-   do ip=01,67 !nrparticipants
+   do ip=01,02 !nrparticipants
       if ( ip == 9  ) cycle
       if ( ip == 13 ) cycle
       if ( ip == 25 ) cycle
@@ -35,7 +36,7 @@ program axis
    enddo
 
 ! Processing
-   do ip=01,67 !nrparticipants
+   do ip=01,02 !nrparticipants
       if ( ip == 9  ) cycle
       if ( ip == 13 ) cycle
       if ( ip == 25 ) cycle
@@ -55,6 +56,7 @@ program axis
          do is=1,nrspeeds
             call newnrlines(ip,id,is)
             call speedcalc(ip,id,is)
+            call referencepos(ip,id,is)
             call writeoutfile(ip,id,is)
          enddo
       enddo

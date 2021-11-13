@@ -10,6 +10,7 @@ main.o:      m_pickfootpoint.o
 main.o:      m_readexperiment.o
 main.o:      m_readfootdata.o
 main.o:      m_referencepoint.o
+main.o:      m_referencepos.o
 main.o:      m_setup.o
 main.o:      m_speedcalc.o
 main.o:      m_state.o
@@ -39,6 +40,9 @@ m_readfootdata.o:      m_state.o
 m_referencepoint.o:      makefile
 m_referencepoint.o:      MODEL.CPP
 m_referencepoint.o:      m_state.o
+m_referencepos.o:      makefile
+m_referencepos.o:      MODEL.CPP
+m_referencepos.o:      m_state.o
 m_setup.o:      makefile
 m_setup.o:      MODEL.CPP
 m_speedcalc.o:      makefile

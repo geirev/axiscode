@@ -8,7 +8,7 @@ subroutine readfootdata(ip)
    character(len=100) header
    character(len=2) tag2
    logical ex
-   integer i,i1(1),i2(1),j,nrlines
+   integer i,nrlines
    real tmp
    real xh(nrfootpoints),yh(nrfootpoints),xv(nrfootpoints),yv(nrfootpoints)
 
@@ -20,6 +20,7 @@ subroutine readfootdata(ip)
 
    inquire(file=trim(filename),exist=ex)
    if (ex) then
+      ! Counting number of lines
       open(10,file=trim(filename))
       read(10,'(a)')header
       do i=1,100000
@@ -28,6 +29,7 @@ subroutine readfootdata(ip)
       100 nrlines=i-1
       close(10)
 
+      ! reading data
       open(10,file=trim(filename))
       read(10,'(a)')header
       do i=1,nrlines
@@ -35,29 +37,15 @@ subroutine readfootdata(ip)
       enddo
       close(10)
 
-      i1=minloc(xh(1:nrlines))
-      i1=1
-      i2=maxloc(xh(1:nrlines))
-      i2=nrlines
-      j=0
-      do i=i1(1),i2(1)
-         j=j+1
-         part(ip)%foot%xh(j)=xh(i)
-         part(ip)%foot%yh(j)=yh(i)
+      ! Copy data to foot class
+      do i=1,nrlines
+         part(ip)%foot%xh(i)=xh(i)
+         part(ip)%foot%yh(i)=yh(i)
+         part(ip)%foot%xv(i)=xv(i)
+         part(ip)%foot%yv(i)=yv(i)
       enddo
-      part(ip)%foot%nrlinesh=j
-
-      i1=minloc(xv(1:nrlines))
-      i1=1
-      i2=maxloc(xv(1:nrlines))
-      i2=nrlines
-      j=0
-      do i=i1(1),i2(1)
-         j=j+1
-         part(ip)%foot%xv(j)=xv(i)
-         part(ip)%foot%yv(j)=yv(i)
-      enddo
-      part(ip)%foot%nrlinesv=j
+      part(ip)%foot%nrlinesh=nrlines
+      part(ip)%foot%nrlinesv=nrlines
 
    else
       stop 'foot file does not exist'

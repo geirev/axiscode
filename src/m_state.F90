@@ -16,6 +16,7 @@ module m_state
 
    type experiment
       integer nrlines
+      integer npos,ned1,ned9,nee6,nefa,neff,nf00
       logical lpos,led1,led9,lee6,lefa,leff,lf00
       real        :: dist2(nrlmax)
       real        :: speed(nrlmax)

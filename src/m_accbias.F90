@@ -2,6 +2,7 @@ module m_accbias
 use m_state
 contains
 subroutine accbias(ip,id,is)
+   !Remove bias from acceleration data by subtracting the average values of the first 10 values
    integer, intent(in) :: ip  ! participant number (1-67)
    integer, intent(in) :: id  ! direction number (1-12)
    integer, intent(in) :: is  ! speed number (1-3)
