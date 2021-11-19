@@ -18,6 +18,7 @@ module m_state
       integer nrlines
       integer npos,ned1,ned9,nee6,nefa,neff,nf00
       logical lpos,led1,led9,lee6,lefa,leff,lf00
+      real        :: dist1(nrlmax)
       real        :: dist2(nrlmax)
       real        :: speed(nrlmax)
       type(coord) :: pos1(nrlmax)
@@ -43,7 +44,7 @@ module m_state
    end type
 
    type participant
-      real xorigo,yorigo
+      real xorigo,yorigo,xstart1,ystart1,zstart1,xstart2,ystart2,zstart2
       type (experiment) :: expr(nrdirections,nrspeeds)
       type (footdata)   :: foot
    end type

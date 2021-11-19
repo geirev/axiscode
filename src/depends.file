@@ -3,6 +3,7 @@ m_accbias.o:      MODEL.CPP
 m_accbias.o:      m_state.o
 main.o:      m_accbias.o
 main.o:      makefile
+main.o:      m_distpos.o
 main.o:      m_footpointsdir.o
 main.o:      m_newnrlines.o
 main.o:      MODEL.CPP
@@ -19,6 +20,9 @@ main.o:      m_writefootdata.o
 main.o:      m_writeoutfile.o
 m_ansi_colors.o:      makefile
 m_ansi_colors.o:      MODEL.CPP
+m_distpos.o:      makefile
+m_distpos.o:      MODEL.CPP
+m_distpos.o:      m_state.o
 m_footpointsdir.o:      makefile
 m_footpointsdir.o:      MODEL.CPP
 m_footpointsdir.o:      m_state.o

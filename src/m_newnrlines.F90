@@ -7,17 +7,14 @@ subroutine newnrlines(ip,id,is)
    integer, intent(in) :: id  ! direction number (1-12)
    integer, intent(in) :: is  ! speed number (1-3)
    integer i
-   real x,y
 
-   i=0
    if (part(ip)%expr(id,is)%lpos) then
       do i=1,part(ip)%expr(id,is)%nrlines
-         x=part(ip)%expr(id,is)%pos2(i)%x
-         y=part(ip)%expr(id,is)%pos2(i)%y
-         part(ip)%expr(id,is)%dist2(i)=sqrt( (x-part(ip)%xorigo)**2 + (y-part(ip)%yorigo)**2 )
-         if ( (part(ip)%expr(id,is)%dist2(i) > 2.0*part(ip)%foot%dist(id)) .and. &
+         if ( (part(ip)%expr(id,is)%dist2(i) > 3.0*part(ip)%foot%dist(id)) .and. &
                part(ip)%expr(id,is)%dist2(i).lt.  part(ip)%expr(id,is)%dist2(i-1) ) then
+
             part(ip)%expr(id,is)%nrlines=i-1
+
             exit
          endif
       enddo

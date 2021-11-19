@@ -1,6 +1,7 @@
 MODULES = \
 	m_accbias.F90\
 	m_ansi_colors.F90\
+	m_distpos.F90\
 	m_footpointsdir.F90\
 	m_newnrlines.F90\
 	m_pickfootpoint.F90\

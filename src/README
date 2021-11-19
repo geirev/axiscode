@@ -2,9 +2,10 @@ vi har så langt beregnet (x_0, y_0) som middel av start posisjonen til Pos2 sen
 Dette skulle vel vært pos1 sensoren?
 
  -Kan vi legge til et tall til x_0 slik at vi flytter sensoren fremover til ca posisjon av tyngdepunktet?
-  Grunnen er at jeg vil se når tyngdepunktet passer utsiden av fotbladet (som er der man tar overbalanse).
-  Nå beregener jeg når sensoren passerer fotbladet som ikke er held det samme (spesielt i forover og bakover retningene).
+  Grunnen er at jeg vil se når tyngdepunktet passerer utsiden av fotbladet (som er der man tar overbalanse).
+  Nå beregener jeg når sensoren passerer fotbladet som ikke er helt det samme (spesielt i forover og bakover retningene).
   Da vil det også gi mening å plotte pos1 relativt til origo (x_0,y_0) for alle retningene.
 
  -y_0 beregnes fra data, men kanskje vi kan anta at folk flest er symmetriske og sette y_0 til å ligge på midtlinjen mellom fotbladene.
-  Har vi denne verdien (den er ikke null når vi ser på fot plottene). Dette vil redusere "feilen" i prosesseringen litt.
+  Har vi denne verdien (den er ikke null når vi ser på fotplottene). Dette vil redusere "feilen" i prosesseringen litt.
+  Var der et problem med at oppsettet ble endret underveis slik at y_0 ikke er den samme for alle experimentene?

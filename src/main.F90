@@ -5,6 +5,7 @@ program axis
    use m_writeexperiment
    use m_readfootdata
    use m_referencepoint
+   use m_distpos
    use m_newnrlines
    use m_speedcalc
    use m_writeoutfile
@@ -25,12 +26,12 @@ program axis
       if ( ip == 25 ) cycle
       if ( ip == 34 ) cycle
 
-      call readfootdata(ip)
+      call readfootdata(ip)                   ! Reading the foot data
       do id=1,nrdirections
          do is=1,nrspeeds
-            call readexperiment(ip,id,is)
-            call accbias(ip,id,is)
-            call writeexperiment(ip,id,is)
+            call readexperiment(ip,id,is)     ! Reading all files for an experiment
+            call accbias(ip,id,is)            ! Remove bias in acceleration data
+            call writeexperiment(ip,id,is)    ! Saves all files (with bias correction)
          enddo
       enddo
    enddo
@@ -44,20 +45,21 @@ program axis
 
       print *,' '
       print *,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
-      call referencepoint(ip)
+      call referencepoint(ip)                 ! xorigo, xtart1, xstart2, ...
 
-      call footpointsdir(ip)
+      call footpointsdir(ip)                  ! relative to xorigo and yorigo
 
-      call writefootdata(ip)
+      call writefootdata(ip)                  ! relative to xorigo and yorigo
 
       print *,' '
       do id=1,nrdirections
-         call pickfootpoint(ip,id)
+         call pickfootpoint(ip,id)            ! Distance and direction from xy-origo to the foot points
          do is=1,nrspeeds
-            call newnrlines(ip,id,is)
-            call speedcalc(ip,id,is)
-            call referencepos(ip,id,is)
-            call writeoutfile(ip,id,is)
+            call distpos(ip,id,is)            ! Compute movement distances relative xstart (ystart/yorigo) for pos1 and pos2
+            call newnrlines(ip,id,is)         ! Truncate timeseries after experiment
+            call speedcalc(ip,id,is)          ! Calculate speed
+            call referencepos(ip,id,is)       ! Subtract reference value from position data
+            call writeoutfile(ip,id,is)       ! Write new output files for plotting
          enddo
       enddo
    enddo

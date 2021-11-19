@@ -8,19 +8,23 @@ subroutine referencepos(ip,id,is)
    integer, intent(in) :: is  ! speed number (1-3)
 
    if (part(ip)%expr(id,is)%lpos) then
-         print *,'z: ',part(ip)%expr(id,is)%pos1(1)%z, part(ip)%expr(id,is)%pos2(1)%z
-         part(ip)%expr(id,is)%pos1(:)%x = part(ip)%expr(id,is)%pos1(:)%x - part(ip)%xorigo
-         part(ip)%expr(id,is)%pos2(:)%x = part(ip)%expr(id,is)%pos2(:)%x - part(ip)%xorigo
+      part(ip)%expr(id,is)%pos1(:)%x = part(ip)%expr(id,is)%pos1(:)%x - part(ip)%xstart1
+      part(ip)%expr(id,is)%pos2(:)%x = part(ip)%expr(id,is)%pos2(:)%x - part(ip)%xstart2
 
-         part(ip)%expr(id,is)%pos1(:)%y = part(ip)%expr(id,is)%pos1(:)%y - part(ip)%yorigo
-         part(ip)%expr(id,is)%pos2(:)%y = part(ip)%expr(id,is)%pos2(:)%y - part(ip)%yorigo
+      part(ip)%expr(id,is)%pos1(:)%y = part(ip)%expr(id,is)%pos1(:)%y - part(ip)%yorigo
+      part(ip)%expr(id,is)%pos2(:)%y = part(ip)%expr(id,is)%pos2(:)%y - part(ip)%yorigo
 
-         part(ip)%expr(id,is)%pos1(:)%z = part(ip)%expr(id,is)%pos1(:)%z - part(ip)%expr(id,is)%pos1(1)%z
-         part(ip)%expr(id,is)%pos2(:)%z = part(ip)%expr(id,is)%pos2(:)%z - part(ip)%expr(id,is)%pos2(1)%z
+      part(ip)%expr(id,is)%pos1(:)%z = part(ip)%expr(id,is)%pos1(:)%z - part(ip)%zstart1
+      part(ip)%expr(id,is)%pos2(:)%z = part(ip)%expr(id,is)%pos2(:)%z - part(ip)%zstart2
 
-!      do i=1,part(ip)%expr(id,is)%npos
-!      enddo
-         print *,'z: ',part(ip)%expr(id,is)%pos1(1)%z, part(ip)%expr(id,is)%pos2(1)%z
+    !  part(ip)%expr(id,is)%pos1(:)%x = part(ip)%expr(id,is)%pos1(:)%x - sum(part(ip)%expr(id,is)%pos1(1:10)%x)/10.0 !- part(ip)%xorigo
+    !  part(ip)%expr(id,is)%pos2(:)%x = part(ip)%expr(id,is)%pos2(:)%x - sum(part(ip)%expr(id,is)%pos2(1:10)%x)/10.0 !- part(ip)%xorigo
+
+    !  part(ip)%expr(id,is)%pos1(:)%y = part(ip)%expr(id,is)%pos1(:)%y - sum(part(ip)%expr(id,is)%pos1(1:10)%y)/10.0 !- part(ip)%yorigo
+    !  part(ip)%expr(id,is)%pos2(:)%y = part(ip)%expr(id,is)%pos2(:)%y - sum(part(ip)%expr(id,is)%pos2(1:10)%y)/10.0 !- part(ip)%yorigo
+
+    !  part(ip)%expr(id,is)%pos1(:)%z = part(ip)%expr(id,is)%pos1(:)%z - sum(part(ip)%expr(id,is)%pos1(1:10)%z)/10.0
+    !  part(ip)%expr(id,is)%pos2(:)%z = part(ip)%expr(id,is)%pos2(:)%z - sum(part(ip)%expr(id,is)%pos2(1:10)%z)/10.0
    endif
 
 end subroutine
