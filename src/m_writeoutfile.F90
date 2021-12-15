@@ -11,18 +11,16 @@ subroutine writeoutfile(ip,id,is)
    integer i
 
    write(fileprefix,'(i2.2,a,i2.2,a,i1.1)')ip,'_',id,'_',is
-!   print *,'writeoutfile fileprefix=',fileprefix
 
-   filename=fileprefix//'.out'
+   filename=trim(accposdir)//fileprefix//'.out'
    if (is == 1) then
-      write(*,'(2a)',advance='no')'writing: ',trim(filename)
+      write(*,'(2a)',advance='no')'writing: ',trim(fileprefix)
    elseif(is==2) then
-      write(*,'(tr1,a)',advance='no')trim(filename)
+      write(*,'(tr1,a)',advance='no')trim(fileprefix)
    else
-      write(*,'(tr1,a)')trim(filename)
+      write(*,'(tr1,a)')trim(fileprefix)
    endif
 
-   !  if (part(ip)%expr(id,is)%nrlines < 50) return
 
    open(10,file=trim(filename))
       write(10,'(a4,26a10)')'ind',' distance2',&
@@ -50,7 +48,7 @@ subroutine writeoutfile(ip,id,is)
                                   '    f00(x)',&
                                   '    f00(y)',&
                                   '    f00(z)',&
-                                  'speed mm/s'
+                                  'speed cm/s'
       do i=1,part(ip)%expr(id,is)%nrlines
          write(10,'(i4,26f10.3)')i,part(ip)%expr(id,is)%dist2(i)/part(ip)%foot%dist(id), &
                                    part(ip)%expr(id,is)%pos1(i),  &
@@ -61,7 +59,7 @@ subroutine writeoutfile(ip,id,is)
                                    part(ip)%expr(id,is)%efa(i),   &
                                    part(ip)%expr(id,is)%eff(i),   &
                                    part(ip)%expr(id,is)%f00(i),   &
-                                   10.0*part(ip)%expr(id,is)%speed(i)
+                                  100.0*part(ip)%expr(id,is)%speed(i)  ! cm/s
       enddo
    close(10)
 

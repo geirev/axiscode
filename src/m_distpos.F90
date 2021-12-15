@@ -13,11 +13,11 @@ subroutine distpos(ip,id,is)
       do i=1,part(ip)%expr(id,is)%nrlines
          x=part(ip)%expr(id,is)%pos1(i)%x
          y=part(ip)%expr(id,is)%pos1(i)%y
-         part(ip)%expr(id,is)%dist1(i)=sqrt( (x-part(ip)%xstart1)**2 + (y-part(ip)%ystart1)**2 )
+         part(ip)%expr(id,is)%dist1(i)=sqrt( (x-part(ip)%xstart1)**2 + (y-part(ip)%yorigo)**2 )
 
          x=part(ip)%expr(id,is)%pos2(i)%x
          y=part(ip)%expr(id,is)%pos2(i)%y
-         part(ip)%expr(id,is)%dist2(i)=sqrt( (x-part(ip)%xstart2)**2 + (y-part(ip)%ystart2)**2 )
+         part(ip)%expr(id,is)%dist2(i)=sqrt( (x-part(ip)%xstart2)**2 + (y-part(ip)%yorigo)**2 )
       enddo
    endif
 

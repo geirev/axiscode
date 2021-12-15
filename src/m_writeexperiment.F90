@@ -13,7 +13,31 @@ subroutine writeexperiment(ip,id,is)
    character(len=100) filename
    character(len=100) newdir
    character(len=31) :: header='PacketCounter,Acc_X,Acc_Y,Acc_Z'
+   character(len=27) :: posheader='timestamp,x1,y1,z1,x2,y2,z2'
    integer i
+
+
+
+   write(newdir,'(a,a,a,a)')'mkdir -p '//trim(dir_project)//'/'//subdir_posbias
+   call system(trim(newdir))
+   write(fileprefix,'(i2.2,a,i2.2,a,i1.1)')ip,'_',id,'_',is
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Writing corrected position data x1 ,y1, z1, x2 ,y2, z2
+   filename=trim(dir_project)//'/'//subdir_posbias//'/'//fileprefix//'.xyx'
+   if (part(ip)%expr(id,is)%lpos) then
+      open(10,file=trim(filename))
+
+      write(10,'(a)')trim(posheader)
+      do i=1,part(ip)%expr(id,is)%npos
+         write(10,'(i4,6f12.6)')i,part(ip)%expr(id,is)%pos1(i),part(ip)%expr(id,is)%pos2(i)
+      enddo
+      close(10)
+   endif
+
+
+
+
+
 
    write(newdir,'(a,a,a,a)')'mkdir -p '//trim(dir_project)//'/'//subdir_accbias
    call system(trim(newdir))

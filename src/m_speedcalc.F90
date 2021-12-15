@@ -18,7 +18,7 @@ subroutine speedcalc(ip,id,is)
          y1=part(ip)%expr(id,is)%pos2(i-1)%y
          x2=part(ip)%expr(id,is)%pos2(i)%x
          y2=part(ip)%expr(id,is)%pos2(i)%y
-         part(ip)%expr(id,is)%speed(i)=   0.001*sqrt( (x2-x1)**2 + (y2-y1)**2 )/deltat
+         part(ip)%expr(id,is)%speed(i)=   0.001*sqrt( (x2-x1)**2 + (y2-y1)**2 )/deltat   ! m/s
       enddo
    endif
 

@@ -10,6 +10,7 @@ subroutine referencepoint(ip)
 
 
 ! Center point of frame (subtract 10 mm to mimmic center of mass location)
+! First 41 taken in Osterøy and the rest in bergen lead to small difference in frames.
    if (ip < 42) then
       part(ip)%xorigo=611.460 - 10.0
       part(ip)%yorigo=-31.254
@@ -23,12 +24,12 @@ subroutine referencepoint(ip)
       do s=1,nrspeeds
          if (part(ip)%expr(d,s)%lpos) then
             nrexp=nrexp+1
-            x1=x1+sum(part(ip)%expr(d,s)%pos1(1:10)%x)/10.0
-            y1=y1+sum(part(ip)%expr(d,s)%pos1(1:10)%y)/10.0
-            z1=z1+sum(part(ip)%expr(d,s)%pos1(1:10)%z)/10.0
-            x2=x2+sum(part(ip)%expr(d,s)%pos2(1:10)%x)/10.0
-            y2=y2+sum(part(ip)%expr(d,s)%pos2(1:10)%y)/10.0
-            z2=z2+sum(part(ip)%expr(d,s)%pos2(1:10)%z)/10.0
+            x1=x1+sum(part(ip)%expr(d,s)%pos1(1:20)%x)/20.0
+            y1=y1+sum(part(ip)%expr(d,s)%pos1(1:20)%y)/20.0
+            z1=z1+sum(part(ip)%expr(d,s)%pos1(1:20)%z)/20.0
+            x2=x2+sum(part(ip)%expr(d,s)%pos2(1:20)%x)/20.0
+            y2=y2+sum(part(ip)%expr(d,s)%pos2(1:20)%y)/20.0
+            z2=z2+sum(part(ip)%expr(d,s)%pos2(1:20)%z)/20.0
          endif
       enddo
    enddo

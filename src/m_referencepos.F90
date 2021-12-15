@@ -17,14 +17,6 @@ subroutine referencepos(ip,id,is)
       part(ip)%expr(id,is)%pos1(:)%z = part(ip)%expr(id,is)%pos1(:)%z - part(ip)%zstart1
       part(ip)%expr(id,is)%pos2(:)%z = part(ip)%expr(id,is)%pos2(:)%z - part(ip)%zstart2
 
-    !  part(ip)%expr(id,is)%pos1(:)%x = part(ip)%expr(id,is)%pos1(:)%x - sum(part(ip)%expr(id,is)%pos1(1:10)%x)/10.0 !- part(ip)%xorigo
-    !  part(ip)%expr(id,is)%pos2(:)%x = part(ip)%expr(id,is)%pos2(:)%x - sum(part(ip)%expr(id,is)%pos2(1:10)%x)/10.0 !- part(ip)%xorigo
-
-    !  part(ip)%expr(id,is)%pos1(:)%y = part(ip)%expr(id,is)%pos1(:)%y - sum(part(ip)%expr(id,is)%pos1(1:10)%y)/10.0 !- part(ip)%yorigo
-    !  part(ip)%expr(id,is)%pos2(:)%y = part(ip)%expr(id,is)%pos2(:)%y - sum(part(ip)%expr(id,is)%pos2(1:10)%y)/10.0 !- part(ip)%yorigo
-
-    !  part(ip)%expr(id,is)%pos1(:)%z = part(ip)%expr(id,is)%pos1(:)%z - sum(part(ip)%expr(id,is)%pos1(1:10)%z)/10.0
-    !  part(ip)%expr(id,is)%pos2(:)%z = part(ip)%expr(id,is)%pos2(:)%z - sum(part(ip)%expr(id,is)%pos2(1:10)%z)/10.0
    endif
 
 end subroutine

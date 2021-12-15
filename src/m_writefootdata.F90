@@ -9,7 +9,7 @@ subroutine writefootdata(ip)
    integer i
 
    write(cip,'(i2.2)')ip
-   filename=cip//'_footright.out'
+   filename=trim(accposdir)//cip//'_footright.out'
    print *,'writing filename=',trim(filename)
    open(10,file=trim(filename))
       write(10,'(a4,6a10)')'ind','     xh(i)','     yh(i)','   dirh(i)'
@@ -20,7 +20,7 @@ subroutine writefootdata(ip)
       enddo
    close(10)
 
-   filename=cip//'_footleft.out'
+   filename=trim(accposdir)//cip//'_footleft.out'
    print *,'writing filename=',trim(filename)
    open(10,file=trim(filename))
       write(10,'(a4,6a10)')'ind','     xv(i)','     yv(i)','   dirv(i)'
@@ -31,7 +31,7 @@ subroutine writefootdata(ip)
       enddo
    close(10)
 
-   filename=cip//'_origo.out'
+   filename=trim(accposdir)//cip//'_origo.out'
    print *,'writing filename=',trim(filename)
    open(10,file=trim(filename))
       write(10,'(6(3f10.3))')part(ip)%xorigo-part(ip)%xorigo,part(ip)%yorigo-part(ip)%yorigo

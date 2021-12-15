@@ -14,12 +14,18 @@ program axis
    use m_accbias
    use m_footpointsdir
    use m_pickfootpoint
+   use m_readposcor
+   use m_readfootcor
+   use m_poscor
+   use m_footcor
 
    integer :: ip
    integer :: id
    integer :: is
 
 ! Reading all data and truncating unneeded data lines
+   call readposcor                            ! Reading the pos2 tilleggstall
+   call readfootcor                           ! Read correction to footdata
    do ip=01,02 !nrparticipants
       if ( ip == 9  ) cycle
       if ( ip == 13 ) cycle
@@ -27,9 +33,12 @@ program axis
       if ( ip == 34 ) cycle
 
       call readfootdata(ip)                   ! Reading the foot data
+      call footcor(ip)                        ! Correcting frame position of foot data
+
       do id=1,nrdirections
          do is=1,nrspeeds
             call readexperiment(ip,id,is)     ! Reading all files for an experiment
+            call poscor(ip,id,is)             ! Correcting reference values for pos2%x
             call accbias(ip,id,is)            ! Remove bias in acceleration data
             call writeexperiment(ip,id,is)    ! Saves all files (with bias correction)
          enddo
@@ -55,7 +64,7 @@ program axis
       do id=1,nrdirections
          call pickfootpoint(ip,id)            ! Distance and direction from xy-origo to the foot points
          do is=1,nrspeeds
-            call distpos(ip,id,is)            ! Compute movement distances relative xstart (ystart/yorigo) for pos1 and pos2
+            call distpos(ip,id,is)            ! Distances relative xstart (ystart/yorigo) for pos1 and pos2
             call newnrlines(ip,id,is)         ! Truncate timeseries after experiment
             call speedcalc(ip,id,is)          ! Calculate speed
             call referencepos(ip,id,is)       ! Subtract reference value from position data
