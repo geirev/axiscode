@@ -7,6 +7,7 @@ MODULES = \
 	m_newnrlines.F90\
 	m_pickfootpoint.F90\
 	m_poscor.F90\
+	m_posinch.F90\
 	m_readexperiment.F90\
 	m_readfootcor.F90\
 	m_readfootdata.F90\

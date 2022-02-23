@@ -3,7 +3,7 @@ module m_state
    integer, parameter :: nrparticipants=67
    integer, parameter :: nrdirections=12
    integer, parameter :: nrspeeds=3
-   integer, parameter :: nrlmax=2000
+   integer, parameter :: nrlmax=4000
 
    integer, parameter :: nrfootpoints=50
 
@@ -20,7 +20,8 @@ module m_state
       logical lpos,led1,led9,lee6,lefa,leff,lf00
       real        :: dist1(nrlmax)
       real        :: dist2(nrlmax)
-      real        :: speed(nrlmax)
+      real        :: speed1(nrlmax)
+      real        :: speed2(nrlmax)
       type(coord) :: pos1(nrlmax)
       type(coord) :: pos2(nrlmax)
       type(coord) :: ed1(nrlmax)
@@ -83,7 +84,8 @@ module m_state
       A%lf00=.false.
       do i=1,nrlmax
          A%dist2(i)=r
-         A%speed(i)=r
+         A%speed1(i)=r
+         A%speed2(i)=r
          A%pos1(i)=r
          A%pos2(i)=r
          A%ed1(i)=r

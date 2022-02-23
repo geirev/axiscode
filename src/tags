@@ -9,6 +9,7 @@
 100	m_readfootdata.F90	/^      100 nrlines=i-1$/;"	l	subroutine:readfootdata	file:
 100	m_readposcor.F90	/^   100 close(10)$/;"	l	subroutine:readposcor	file:
 accbias	m_accbias.F90	/^subroutine accbias(/;"	s	module:m_accbias
+accposdir	m_setup.F90	/^   character(len=39)  :: accposdir=/;"	v	module:m_setup
 assign_coord	m_state.F90	/^   subroutine assign_coord(/;"	s	module:m_state
 assign_experiment	m_state.F90	/^   subroutine assign_experiment(/;"	s	module:m_state
 axis	main.F90	/^program axis$/;"	p
@@ -43,7 +44,6 @@ expr	m_state.F90	/^      type (experiment) :: expr(/;"	k	type:participant
 f00	m_state.F90	/^      type(coord) :: f00(/;"	k	type:experiment
 foot	m_state.F90	/^      type (footd/;"	k	type:participant
 footcor	m_footcor.F90	/^subroutine footcor(/;"	s	module:m_footcor
-footcor	m_readfootcor.F90	/^real :: footcor(/;"	v	module:m_readfootcor
 footcorfile	m_setup.F90	/^   character(len=62)  :: footcorfile=/;"	v	module:m_setup
 footdata	m_state.F90	/^   type footdata$/;"	t	module:m_state
 footpointsdir	m_footpointsdir.F90	/^subroutine footpointsdir(/;"	s	module:m_footpointsdir
@@ -66,6 +66,7 @@ m_footpointsdir	m_footpointsdir.F90	/^module m_footpointsdir$/;"	m
 m_newnrlines	m_newnrlines.F90	/^module m_newnrlines$/;"	m
 m_pickfootpoint	m_pickfootpoint.F90	/^module m_pickfootpoint$/;"	m
 m_poscor	m_poscor.F90	/^module m_poscor$/;"	m
+m_posinch	m_posinch.F90	/^module m_posinch$/;"	m
 m_readexperiment	m_readexperiment.F90	/^module m_readexperiment$/;"	m
 m_readfootcor	m_readfootcor.F90	/^module m_readfootcor$/;"	m
 m_readfootdata	m_readfootdata.F90	/^module m_readfootdata$/;"	m
@@ -102,6 +103,7 @@ pos1	m_state.F90	/^      type(coord) :: pos1(/;"	k	type:experiment
 pos2	m_state.F90	/^      type(coord) :: pos2(/;"	k	type:experiment
 poscor	m_poscor.F90	/^subroutine poscor(/;"	s	module:m_poscor
 poscorfile	m_setup.F90	/^   character(len=65)  :: poscorfile=/;"	v	module:m_setup
+posinch	m_posinch.F90	/^subroutine posinch(/;"	s	module:m_posinch
 readaccdata	m_readexperiment.F90	/^   function readaccdata(/;"	f	module:m_readexperiment
 readexperiment	m_readexperiment.F90	/^subroutine readexperiment(/;"	s	module:m_readexperiment
 readfootcor	m_readfootcor.F90	/^subroutine readfootcor$/;"	s	module:m_readfootcor
@@ -109,7 +111,8 @@ readfootdata	m_readfootdata.F90	/^subroutine readfootdata(/;"	s	module:m_readfoo
 readposcor	m_readposcor.F90	/^subroutine readposcor$/;"	s	module:m_readposcor
 referencepoint	m_referencepoint.F90	/^subroutine referencepoint(/;"	s	module:m_referencepoint
 referencepos	m_referencepos.F90	/^subroutine referencepos(/;"	s	module:m_referencepos
-speed	m_state.F90	/^      real        :: speed(/;"	k	type:experiment
+speed1	m_state.F90	/^      real        :: speed1(/;"	k	type:experiment
+speed2	m_state.F90	/^      real        :: speed2(/;"	k	type:experiment
 speedcalc	m_speedcalc.F90	/^subroutine speedcalc(/;"	s	module:m_speedcalc
 subdir_acc	m_setup.F90	/^   character(len=3)   :: subdir_acc=/;"	v	module:m_setup
 subdir_accbias	m_setup.F90	/^   character(len=8)   :: subdir_accbias=/;"	v	module:m_setup
@@ -127,6 +130,7 @@ xstart1	m_state.F90	/^      real xorigo,yorigo,xstart1,/;"	k	type:participant
 xstart2	m_state.F90	/^      real xorigo,yorigo,xstart1,ystart1,zstart1,xstart2,/;"	k	type:participant
 xv	m_state.F90	/^      real xv(/;"	k	type:footdata
 y	m_state.F90	/^      real y$/;"	k	type:coord
+ycor	m_readfootcor.F90	/^real :: ycor(/;"	v	module:m_readfootcor
 yh	m_state.F90	/^      real yh(/;"	k	type:footdata
 yorigo	m_state.F90	/^      real xorigo,yorigo,/;"	k	type:participant
 ystart1	m_state.F90	/^      real xorigo,yorigo,xstart1,ystart1,/;"	k	type:participant

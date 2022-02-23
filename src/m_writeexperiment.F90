@@ -23,13 +23,13 @@ subroutine writeexperiment(ip,id,is)
    write(fileprefix,'(i2.2,a,i2.2,a,i1.1)')ip,'_',id,'_',is
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Writing corrected position data x1 ,y1, z1, x2 ,y2, z2
-   filename=trim(dir_project)//'/'//subdir_posbias//'/'//fileprefix//'.xyx'
+   filename=trim(dir_project)//'/'//subdir_posbias//'/'//fileprefix//'.xyz'
    if (part(ip)%expr(id,is)%lpos) then
       open(10,file=trim(filename))
 
       write(10,'(a)')trim(posheader)
       do i=1,part(ip)%expr(id,is)%npos
-         write(10,'(i4,6f12.6)')i,part(ip)%expr(id,is)%pos1(i),part(ip)%expr(id,is)%pos2(i)
+         write(10,'(i6,6f12.6)')i,part(ip)%expr(id,is)%pos1(i),part(ip)%expr(id,is)%pos2(i)
       enddo
       close(10)
    endif
@@ -50,7 +50,7 @@ subroutine writeexperiment(ip,id,is)
       open(10,file=trim(filename))
       write(10,'(a)')trim(header)
       do i=1,part(ip)%expr(id,is)%ned1
-         write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%ed1(i)
+         write(10,'(i6,3f12.6)')i,part(ip)%expr(id,is)%ed1(i)
       enddo
       close(10)
    endif
@@ -63,7 +63,7 @@ subroutine writeexperiment(ip,id,is)
       open(10,file=trim(filename))
       write(10,'(a)')header
       do i=1,part(ip)%expr(id,is)%ned9
-         write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%ed9(i)
+         write(10,'(i6,3f12.6)')i,part(ip)%expr(id,is)%ed9(i)
       enddo
       close(10)
    endif
@@ -75,7 +75,7 @@ subroutine writeexperiment(ip,id,is)
       open(10,file=trim(filename))
       write(10,'(a)')header
       do i=1,part(ip)%expr(id,is)%nee6
-         write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%ee6(i)
+         write(10,'(i6,3f12.6)')i,part(ip)%expr(id,is)%ee6(i)
       enddo
       close(10)
    endif
@@ -87,7 +87,7 @@ subroutine writeexperiment(ip,id,is)
       open(10,file=trim(filename))
       write(10,'(a)')header
       do i=1,part(ip)%expr(id,is)%nefa
-         write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%efa(i)
+         write(10,'(i6,3f12.6)')i,part(ip)%expr(id,is)%efa(i)
       enddo
       close(10)
    endif
@@ -99,7 +99,7 @@ subroutine writeexperiment(ip,id,is)
       open(10,file=trim(filename))
       write(10,'(a)')header
       do i=1,part(ip)%expr(id,is)%neff
-         write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%eff(i)
+         write(10,'(i6,3f12.6)')i,part(ip)%expr(id,is)%eff(i)
       enddo
       close(10)
    endif
@@ -111,7 +111,7 @@ subroutine writeexperiment(ip,id,is)
       open(10,file=trim(filename))
       write(10,'(a)')header
       do i=1,part(ip)%expr(id,is)%nf00
-         write(10,'(i4,3f12.6)')i,part(ip)%expr(id,is)%f00(i)
+         write(10,'(i6,3f12.6)')i,part(ip)%expr(id,is)%f00(i)
       enddo
       close(10)
    endif

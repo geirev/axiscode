@@ -10,6 +10,7 @@ main.o:      m_newnrlines.o
 main.o:      MODEL.CPP
 main.o:      m_pickfootpoint.o
 main.o:      m_poscor.o
+main.o:      m_posinch.o
 main.o:      m_readexperiment.o
 main.o:      m_readfootcor.o
 main.o:      m_readfootdata.o
@@ -46,6 +47,9 @@ m_poscor.o:      MODEL.CPP
 m_poscor.o:      m_readposcor.o
 m_poscor.o:      m_setup.o
 m_poscor.o:      m_state.o
+m_posinch.o:      makefile
+m_posinch.o:      MODEL.CPP
+m_posinch.o:      m_state.o
 m_readexperiment.o:      makefile
 m_readexperiment.o:      m_ansi_colors.o
 m_readexperiment.o:      MODEL.CPP

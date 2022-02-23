@@ -23,7 +23,7 @@ subroutine writeoutfile(ip,id,is)
 
 
    open(10,file=trim(filename))
-      write(10,'(a4,26a10)')'ind',' distance2',&
+      write(10,'(a4,27a10)')'ind',' distance2',&
                                   '   pos1(x)',&
                                   '   pos1(y)',&
                                   '   pos1(z)',&
@@ -48,9 +48,10 @@ subroutine writeoutfile(ip,id,is)
                                   '    f00(x)',&
                                   '    f00(y)',&
                                   '    f00(z)',&
-                                  'speed cm/s'
+                                  'spd 1 cm/s',&
+                                  'spd 2 cm/s'
       do i=1,part(ip)%expr(id,is)%nrlines
-         write(10,'(i4,26f10.3)')i,part(ip)%expr(id,is)%dist2(i)/part(ip)%foot%dist(id), &
+         write(10,'(i4,27f10.3)')i,part(ip)%expr(id,is)%dist2(i)/part(ip)%foot%dist(id), &
                                    part(ip)%expr(id,is)%pos1(i),  &
                                    part(ip)%expr(id,is)%pos2(i),  &
                                    part(ip)%expr(id,is)%ed1(i),   &
@@ -59,7 +60,8 @@ subroutine writeoutfile(ip,id,is)
                                    part(ip)%expr(id,is)%efa(i),   &
                                    part(ip)%expr(id,is)%eff(i),   &
                                    part(ip)%expr(id,is)%f00(i),   &
-                                  100.0*part(ip)%expr(id,is)%speed(i)  ! cm/s
+                                  10.0*part(ip)%expr(id,is)%speed1(i),&  ! dm/s
+                                  10.0*part(ip)%expr(id,is)%speed2(i)    ! dm/s
       enddo
    close(10)
 

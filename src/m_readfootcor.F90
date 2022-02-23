@@ -1,4 +1,5 @@
 module m_readfootcor
+! Read a correction to the frame position for some participants
 use m_setup
 use m_state
 real :: ycor(nrparticipants)

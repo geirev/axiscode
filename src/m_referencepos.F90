@@ -16,7 +16,6 @@ subroutine referencepos(ip,id,is)
 
       part(ip)%expr(id,is)%pos1(:)%z = part(ip)%expr(id,is)%pos1(:)%z - part(ip)%zstart1
       part(ip)%expr(id,is)%pos2(:)%z = part(ip)%expr(id,is)%pos2(:)%z - part(ip)%zstart2
-
    endif
 
 end subroutine

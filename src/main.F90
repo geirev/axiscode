@@ -17,20 +17,18 @@ program axis
    use m_readposcor
    use m_readfootcor
    use m_poscor
+   use m_posinch
    use m_footcor
 
    integer :: ip
    integer :: id
    integer :: is
 
-! Reading all data and truncating unneeded data lines
    call readposcor                            ! Reading the pos2 tilleggstall
    call readfootcor                           ! Read correction to footdata
-   do ip=01,02 !nrparticipants
-      if ( ip == 9  ) cycle
-      if ( ip == 13 ) cycle
-      if ( ip == 25 ) cycle
-      if ( ip == 34 ) cycle
+
+   do ip=1,nrparticipants
+      if ( (ip==9) .or. (ip==13) .or. (ip==25) .or. (ip==34) .or. (ip==41) ) cycle
 
       call readfootdata(ip)                   ! Reading the foot data
       call footcor(ip)                        ! Correcting frame position of foot data
@@ -38,26 +36,14 @@ program axis
       do id=1,nrdirections
          do is=1,nrspeeds
             call readexperiment(ip,id,is)     ! Reading all files for an experiment
+            call posinch(ip,id,is)            ! Transforming from inches to mm pos data in some experients
             call poscor(ip,id,is)             ! Correcting reference values for pos2%x
             call accbias(ip,id,is)            ! Remove bias in acceleration data
-            call writeexperiment(ip,id,is)    ! Saves all files (with bias correction)
          enddo
       enddo
-   enddo
 
-! Processing
-   do ip=01,02 !nrparticipants
-      if ( ip == 9  ) cycle
-      if ( ip == 13 ) cycle
-      if ( ip == 25 ) cycle
-      if ( ip == 34 ) cycle
-
-      print *,' '
-      print *,'%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
       call referencepoint(ip)                 ! xorigo, xtart1, xstart2, ...
-
       call footpointsdir(ip)                  ! relative to xorigo and yorigo
-
       call writefootdata(ip)                  ! relative to xorigo and yorigo
 
       print *,' '
@@ -68,11 +54,11 @@ program axis
             call newnrlines(ip,id,is)         ! Truncate timeseries after experiment
             call speedcalc(ip,id,is)          ! Calculate speed
             call referencepos(ip,id,is)       ! Subtract reference value from position data
+            call writeexperiment(ip,id,is)    ! Saves all files (with bias correction)
             call writeoutfile(ip,id,is)       ! Write new output files for plotting
          enddo
       enddo
    enddo
-
 
 
 end program axis

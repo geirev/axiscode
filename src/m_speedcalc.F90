@@ -14,11 +14,17 @@ subroutine speedcalc(ip,id,is)
    i=0
    if (part(ip)%expr(id,is)%lpos) then
       do i=2,part(ip)%expr(id,is)%nrlines
+         x1=part(ip)%expr(id,is)%pos1(i-1)%x
+         y1=part(ip)%expr(id,is)%pos1(i-1)%y
+         x2=part(ip)%expr(id,is)%pos1(i)%x
+         y2=part(ip)%expr(id,is)%pos1(i)%y
+         part(ip)%expr(id,is)%speed1(i)=   0.001*sqrt( (x2-x1)**2 + (y2-y1)**2 )/deltat   ! m/s
+
          x1=part(ip)%expr(id,is)%pos2(i-1)%x
          y1=part(ip)%expr(id,is)%pos2(i-1)%y
          x2=part(ip)%expr(id,is)%pos2(i)%x
          y2=part(ip)%expr(id,is)%pos2(i)%y
-         part(ip)%expr(id,is)%speed(i)=   0.001*sqrt( (x2-x1)**2 + (y2-y1)**2 )/deltat   ! m/s
+         part(ip)%expr(id,is)%speed2(i)=   0.001*sqrt( (x2-x1)**2 + (y2-y1)**2 )/deltat   ! m/s
       enddo
    endif
 
