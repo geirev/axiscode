@@ -8,4 +8,6 @@ module m_setup
    character(len=65)  :: poscorfile= '/home/geve/Dropbox/Axis_project/original_data/X2_tillegg_1-67.txt'
    character(len=62)  :: footcorfile='/home/geve/Dropbox/Axis_project/foot_frame/foot_correction.txt'
    character(len=39)  :: accposdir='/home/geve/Dropbox/Axis_project/accpos/'
+   character(len=44)  :: accposdirorig='/home/geve/Dropbox/Axis_project/accposfull/'
+   character(len=44)  :: accposdirfilt='/home/geve/Dropbox/Axis_project/accposfilt/'
 end module

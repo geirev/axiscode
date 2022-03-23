@@ -3,6 +3,7 @@ m_accbias.o:      MODEL.CPP
 m_accbias.o:      m_state.o
 main.o:      m_accbias.o
 main.o:      makefile
+main.o:      m_anklemov.o
 main.o:      m_distpos.o
 main.o:      m_footcor.o
 main.o:      m_footpointsdir.o
@@ -23,6 +24,9 @@ main.o:      m_state.o
 main.o:      m_writeexperiment.o
 main.o:      m_writefootdata.o
 main.o:      m_writeoutfile.o
+m_anklemov.o:      makefile
+m_anklemov.o:      MODEL.CPP
+m_anklemov.o:      m_state.o
 m_ansi_colors.o:      makefile
 m_ansi_colors.o:      MODEL.CPP
 m_distpos.o:      makefile
@@ -39,6 +43,8 @@ m_footpointsdir.o:      m_state.o
 m_newnrlines.o:      makefile
 m_newnrlines.o:      MODEL.CPP
 m_newnrlines.o:      m_state.o
+mod_shapiro.o:      makefile
+mod_shapiro.o:      MODEL.CPP
 m_pickfootpoint.o:      makefile
 m_pickfootpoint.o:      MODEL.CPP
 m_pickfootpoint.o:      m_state.o
@@ -91,5 +97,6 @@ m_writefootdata.o:      m_setup.o
 m_writefootdata.o:      m_state.o
 m_writeoutfile.o:      makefile
 m_writeoutfile.o:      MODEL.CPP
+m_writeoutfile.o:      mod_shapiro.o
 m_writeoutfile.o:      m_setup.o
 m_writeoutfile.o:      m_state.o

@@ -66,15 +66,20 @@ subroutine readexperiment(ip,id,is)
 
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-      part(ip)%expr(id,is)%lpos=.true.
       part(ip)%expr(id,is)%npos=numberoflines(filename)
 
-      open(10,file=trim(filename))
-      read(10,'(a)')header
-      do i=1,part(ip)%expr(id,is)%npos
-         read(10,*)tmp,part(ip)%expr(id,is)%pos1(i),part(ip)%expr(id,is)%pos2(i)
-      enddo
-      close(10)
+      if (part(ip)%expr(id,is)%npos < 10) then
+         part(ip)%expr(id,is)%lpos=.false.
+         part(ip)%expr(id,is)%npos=-1
+      else
+         part(ip)%expr(id,is)%lpos=.true.
+         open(10,file=trim(filename))
+         read(10,'(a)')header
+         do i=1,part(ip)%expr(id,is)%npos
+            read(10,*)tmp,part(ip)%expr(id,is)%pos1(i),part(ip)%expr(id,is)%pos2(i)
+         enddo
+         close(10)
+      endif
    else
       part(ip)%expr(id,is)%lpos=.false.
       part(ip)%expr(id,is)%npos=-1
@@ -86,9 +91,14 @@ subroutine readexperiment(ip,id,is)
    filename=trim(dir_project)//'/'//subdir_acc//'/'//fileprefix//'_00B41ED1'//'.acc'
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-      part(ip)%expr(id,is)%led1=.true.
       part(ip)%expr(id,is)%ned1=numberoflines(filename)
-      part(ip)%expr(id,is)%ed1=readaccdata(filename,part(ip)%expr(id,is)%ned1)
+      if (part(ip)%expr(id,is)%ned1 < 10) then
+         part(ip)%expr(id,is)%led1=.false.
+         part(ip)%expr(id,is)%ned1=0
+      else
+         part(ip)%expr(id,is)%led1=.true.
+         part(ip)%expr(id,is)%ed1=readaccdata(filename,part(ip)%expr(id,is)%ned1)
+      endif
    else
       part(ip)%expr(id,is)%led1=.false.
       part(ip)%expr(id,is)%ned1=0
@@ -102,9 +112,14 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-      part(ip)%expr(id,is)%led9=.true.
       part(ip)%expr(id,is)%ned9=numberoflines(filename)
-      part(ip)%expr(id,is)%ed9=readaccdata(filename,part(ip)%expr(id,is)%ned9)
+      if (part(ip)%expr(id,is)%ned9 < 10) then
+         part(ip)%expr(id,is)%led9=.false.
+         part(ip)%expr(id,is)%ned9=-1
+      else
+         part(ip)%expr(id,is)%led9=.true.
+         part(ip)%expr(id,is)%ed9=readaccdata(filename,part(ip)%expr(id,is)%ned9)
+      endif
    else
       part(ip)%expr(id,is)%led9=.false.
       part(ip)%expr(id,is)%ned9=-1
@@ -117,9 +132,14 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-      part(ip)%expr(id,is)%lee6=.true.
       part(ip)%expr(id,is)%nee6=numberoflines(filename)
-      part(ip)%expr(id,is)%ee6=readaccdata(filename,part(ip)%expr(id,is)%nee6)
+      if (part(ip)%expr(id,is)%nee6 < 10) then
+         part(ip)%expr(id,is)%lee6=.false.
+         part(ip)%expr(id,is)%nee6=-1
+      else
+         part(ip)%expr(id,is)%lee6=.true.
+         part(ip)%expr(id,is)%ee6=readaccdata(filename,part(ip)%expr(id,is)%nee6)
+      endif
    else
       part(ip)%expr(id,is)%lee6=.false.
       part(ip)%expr(id,is)%nee6=-1
@@ -132,9 +152,14 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-      part(ip)%expr(id,is)%lefa=.true.
       part(ip)%expr(id,is)%nefa=numberoflines(filename)
-      part(ip)%expr(id,is)%efa=readaccdata(filename,part(ip)%expr(id,is)%nefa)
+      if (part(ip)%expr(id,is)%nefa < 10) then
+         part(ip)%expr(id,is)%lefa=.false.
+         part(ip)%expr(id,is)%nefa=-1
+      else
+         part(ip)%expr(id,is)%lefa=.true.
+         part(ip)%expr(id,is)%efa=readaccdata(filename,part(ip)%expr(id,is)%nefa)
+      endif
    else
       part(ip)%expr(id,is)%lefa=.false.
       part(ip)%expr(id,is)%nefa=-1
@@ -147,9 +172,14 @@ subroutine readexperiment(ip,id,is)
    !print *,'reading filename=',trim(filename)
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-      part(ip)%expr(id,is)%leff=.true.
       part(ip)%expr(id,is)%neff=numberoflines(filename)
-      part(ip)%expr(id,is)%eff=readaccdata(filename,part(ip)%expr(id,is)%neff)
+      if (part(ip)%expr(id,is)%neff < 10) then
+         part(ip)%expr(id,is)%leff=.false.
+         part(ip)%expr(id,is)%neff=-1
+      else
+         part(ip)%expr(id,is)%leff=.true.
+         part(ip)%expr(id,is)%eff=readaccdata(filename,part(ip)%expr(id,is)%neff)
+      endif
    else
       part(ip)%expr(id,is)%leff=.false.
       part(ip)%expr(id,is)%neff=-1
@@ -160,15 +190,22 @@ subroutine readexperiment(ip,id,is)
 ! Reading acceleration data x ,y, z
    filename=trim(dir_project)//'/'//subdir_acc//'/'//fileprefix//'_00B41F00'//'.acc'
    !print *,'reading filename=',trim(filename)
+
    inquire(file=trim(filename),exist=ex)
    if (ex) then
-      part(ip)%expr(id,is)%lf00=.true.
       part(ip)%expr(id,is)%nf00=numberoflines(filename)
-      part(ip)%expr(id,is)%f00=readaccdata(filename,part(ip)%expr(id,is)%nf00)
+      if (part(ip)%expr(id,is)%nf00 < 10) then
+         part(ip)%expr(id,is)%lf00=.false.
+         part(ip)%expr(id,is)%nf00=-1
+      else
+         part(ip)%expr(id,is)%lf00=.true.
+         part(ip)%expr(id,is)%f00=readaccdata(filename,part(ip)%expr(id,is)%nf00)
+      endif
    else
       part(ip)%expr(id,is)%lf00=.false.
       part(ip)%expr(id,is)%nf00=-1
    endif
+
    i=lpstat('F00',part(ip)%expr(id,is)%lf00)
 
    part(ip)%expr(id,is)%nrlines=-1

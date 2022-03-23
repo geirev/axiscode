@@ -8,8 +8,11 @@
 100	m_readfootcor.F90	/^   100 close(10)$/;"	l	subroutine:readfootcor	file:
 100	m_readfootdata.F90	/^      100 nrlines=i-1$/;"	l	subroutine:readfootdata	file:
 100	m_readposcor.F90	/^   100 close(10)$/;"	l	subroutine:readposcor	file:
+100	mod_shapiro.F90	/^ 100 format(' ',a,i2)$/;"	l	subroutine:shfact	file:
 accbias	m_accbias.F90	/^subroutine accbias(/;"	s	module:m_accbias
 accposdir	m_setup.F90	/^   character(len=39)  :: accposdir=/;"	v	module:m_setup
+accposdirorig	m_setup.F90	/^   character(len=44)  :: accposdirorig=/;"	v	module:m_setup
+anklemov	m_anklemov.F90	/^subroutine anklemov(/;"	s	module:m_anklemov
 assign_coord	m_state.F90	/^   subroutine assign_coord(/;"	s	module:m_state
 assign_experiment	m_state.F90	/^   subroutine assign_experiment(/;"	s	module:m_state
 axis	main.F90	/^program axis$/;"	p
@@ -59,6 +62,7 @@ lf00	m_state.F90	/^      logical lpos,led1,led9,lee6,lefa,leff,lf00$/;"	k	type:e
 lpos	m_state.F90	/^      logical lpos,/;"	k	type:experiment
 lpstat	m_readexperiment.F90	/^   integer function lpstat(/;"	f	module:m_readexperiment
 m_accbias	m_accbias.F90	/^module m_accbias$/;"	m
+m_anklemov	m_anklemov.F90	/^module m_anklemov$/;"	m
 m_ansi_colors	m_ansi_colors.F90	/^module m_ansi_colors$/;"	m
 m_distpos	m_distpos.F90	/^module m_distpos$/;"	m
 m_footcor	m_footcor.F90	/^module m_footcor$/;"	m
@@ -79,6 +83,7 @@ m_state	m_state.F90	/^module m_state$/;"	m
 m_writeexperiment	m_writeexperiment.F90	/^module m_writeexperiment$/;"	m
 m_writefootdata	m_writefootdata.F90	/^module m_writefootdata$/;"	m
 m_writeoutfile	m_writeoutfile.F90	/^module m_writeoutfile$/;"	m
+mod_shapiro	mod_shapiro.F90	/^module mod_shapiro$/;"	m
 ned1	m_state.F90	/^      integer npos,ned1,/;"	k	type:experiment
 ned9	m_state.F90	/^      integer npos,ned1,ned9,/;"	k	type:experiment
 nee6	m_state.F90	/^      integer npos,ned1,ned9,nee6,/;"	k	type:experiment
@@ -111,6 +116,9 @@ readfootdata	m_readfootdata.F90	/^subroutine readfootdata(/;"	s	module:m_readfoo
 readposcor	m_readposcor.F90	/^subroutine readposcor$/;"	s	module:m_readposcor
 referencepoint	m_referencepoint.F90	/^subroutine referencepoint(/;"	s	module:m_referencepoint
 referencepos	m_referencepos.F90	/^subroutine referencepos(/;"	s	module:m_referencepos
+shfact	mod_shapiro.F90	/^subroutine shfact(/;"	s	module:mod_shapiro
+shfilt	mod_shapiro.F90	/^subroutine shfilt(/;"	s	module:mod_shapiro
+shfilt2D	mod_shapiro.F90	/^subroutine shfilt2D(/;"	s	module:mod_shapiro
 speed1	m_state.F90	/^      real        :: speed1(/;"	k	type:experiment
 speed2	m_state.F90	/^      real        :: speed2(/;"	k	type:experiment
 speedcalc	m_speedcalc.F90	/^subroutine speedcalc(/;"	s	module:m_speedcalc
