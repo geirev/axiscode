@@ -41,6 +41,7 @@ CPPFLAGS = -traditional -P $(CPPARCH) $(CPPMODEL)
 
 LIBS =  ./libsampling.a ./libenkfanalysis.a -llapack -lblas  -llapack /usr/lib/x86_64-linux-gnu/libfftw3.so.3
 LIBS =  -llapack -lblas  -llapack /usr/lib/x86_64-linux-gnu/libfftw3.so.3
+LIBS =  
 
 
 BINDIR = $(HOME)/bin
