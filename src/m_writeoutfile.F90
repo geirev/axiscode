@@ -34,6 +34,9 @@ subroutine writeoutfile(ip,id,is,callnr)
    elseif (callnr == 3) then
       filename=' '
       filename=trim(accposdirfilt)//fileprefix//'.out'
+   elseif (callnr == 4) then
+      filename=' '
+      filename=trim(accposdirfullfilt)//fileprefix//'.out'
    else
       stop
    endif
@@ -150,7 +153,7 @@ subroutine writeoutfile(ip,id,is,callnr)
    enddo
 
 
-   if (callnr  == 3) then
+   if (callnr  == 3 .or. callnr == 4) then
       call shfact(ish,sh)
       allocate(tmp(nrl))
 

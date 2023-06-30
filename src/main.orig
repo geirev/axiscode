@@ -55,8 +55,7 @@ program axis
             call speedcalc(ip,id,is)          ! Calculate speed
             call referencepos(ip,id,is)       ! Subtract reference value from position data
             call writeoutfile(ip,id,is,1)     ! Write new output files for plotting
-            call writeoutfile(ip,id,is,4)     ! Write new fitered output files for plotting
-            call newnrlines(ip,id,is)         ! Truncate timeseries "after experiment"
+            call newnrlines(ip,id,is)         ! Truncate timeseries after experiment
             call writeexperiment(ip,id,is)    ! Saves all files (with bias correction)
             call writeoutfile(ip,id,is,2)     ! Write new output files for plotting
             call writeoutfile(ip,id,is,3)     ! Write new filtered output files for plotting
